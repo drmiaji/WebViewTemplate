@@ -7,4 +7,13 @@
         <item name="colorAccent">@color/your_accent_color</item>
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
+    <style name="CustomToolbarStyle" parent="Widget.Material3.Toolbar">
+        <!-- Replace with your font file -->
+        <item name="titleTextAppearance">@style/CustomToolbarTitleTextAppearance</item>
+    </style>
+
+    <style name="CustomToolbarTitleTextAppearance" parent="TextAppearance.Material3.TitleLarge">
+
+        <item name="android:textColor">@android:color/white</item> <!-- Optional: Custom text color -->
+    </style>
 </resources>

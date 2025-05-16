@@ -1,12 +1,11 @@
 function onWindowClick(e) {
     var tocTitle = document.querySelector(".toc .title");
-
-    if (e.target == tocTitle || tocTitle.contains(e.target)) {
+    if (e.target == tocTitle || (tocTitle && tocTitle.contains(e.target))) {
         var toc = document.getElementById("toc-ul");
         if (toc.style.display === "none") {
-          toc.style.display = "block";
+            toc.style.display = "block";
         } else {
-          toc.style.display = "none";
+            toc.style.display = "none";
         }
     }
 }

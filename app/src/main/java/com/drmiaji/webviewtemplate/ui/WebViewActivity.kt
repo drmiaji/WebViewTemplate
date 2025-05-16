@@ -22,11 +22,29 @@ class WebViewActivity : BaseActivity() {
         }
 
         val webView = findViewById<WebView>(R.id.webview)
-        val fileName = intent.getStringExtra("fileName") ?: "chapter1.html"
-
         webView.webViewClient = WebViewClient()
         webView.settings.javaScriptEnabled = false
-        webView.loadUrl("file:///android_asset/contents/topics/$fileName")
+
+        val fileName = intent.getStringExtra("fileName") ?: "chapter1.html"
+
+        // Load base.html template
+        val baseHtml = assets.open("contents/base.html").bufferedReader().use { it.readText() }
+        // Load content HTML
+        val contentHtml = assets.open("contents/topics/$fileName").bufferedReader().use { it.readText() }
+
+        // Inject content into template
+        val fullHtml = baseHtml
+            .replace("{{CONTENT}}", contentHtml)
+            .replace("{{THEME}}", "light") // or "dark" for dark mode
+            .replace("{{STYLE}}", "")       // leave blank if style.css handles styling
+
+        webView.loadDataWithBaseURL(
+            "file:///android_asset/contents/",
+            fullHtml,
+            "text/html",
+            "utf-8",
+            null
+        )
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

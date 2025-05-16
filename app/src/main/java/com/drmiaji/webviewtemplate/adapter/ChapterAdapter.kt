@@ -1,5 +1,7 @@
 package com.drmiaji.webviewtemplate.adapter
 
+import android.content.Context
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,11 +13,26 @@ class ChapterAdapter(
     private val onClick: (ChapterItem) -> Unit
 ) : RecyclerView.Adapter<ChapterAdapter.ViewHolder>() {
 
+    companion object {
+        private var solaimanTypeface: Typeface? = null
+
+        fun getSolaimanTypeface(context: Context): Typeface {
+            if (solaimanTypeface == null) {
+                solaimanTypeface = Typeface.createFromAsset(context.assets, "font/solaimanlipi.ttf")
+            }
+            return solaimanTypeface!!
+        }
+    }
+
     inner class ViewHolder(private val binding: ItemChapterBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ChapterItem) {
             binding.chapterTitle.text = item.title
+
+            val typeface = getSolaimanTypeface(binding.root.context)
+            binding.chapterTitle.setTypeface(typeface, Typeface.BOLD)  // Apply bold style here
+
             binding.root.setOnClickListener { onClick(item) }
         }
     }
