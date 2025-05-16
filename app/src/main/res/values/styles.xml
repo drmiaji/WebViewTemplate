@@ -1,10 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <!-- Merged style with attributes from both definitions -->
     <style name="Theme.WebviewTemplate" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/your_primary_color</item>
         <item name="colorPrimaryDark">@color/your_primary_dark_color</item>
         <item name="colorAccent">@color/your_accent_color</item>
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
-
 </resources>
