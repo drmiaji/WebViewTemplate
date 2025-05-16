@@ -25,12 +25,16 @@ class ChapterViewModel(application: Application) : AndroidViewModel(application)
         val chapterList = mutableListOf<ChapterItem>()
         for (i in 0 until jsonArray.length()) {
             val obj = jsonArray.getJSONObject(i)
-            chapterList.add(
-                ChapterItem(
-                    title = obj.getString("title"),
-                    file = obj.getString("file")
+
+            // Defensive parsing: skip item if "path" or "title" is missing
+            if (obj.has("title") && obj.has("path")) {
+                chapterList.add(
+                    ChapterItem(
+                        title = obj.getString("title"),
+                        file = obj.getString("path") // ✅ changed from "file"
+                    )
                 )
-            )
+            }
         }
         _chapters.value = chapterList
     }

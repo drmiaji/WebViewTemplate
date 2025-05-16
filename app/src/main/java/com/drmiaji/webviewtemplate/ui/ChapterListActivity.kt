@@ -24,16 +24,6 @@ class ChapterListActivity : BaseActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.title = "Chapters" // Or dynamic title if you want
 
-        // Set custom font on toolbar title
-        val typeface = ResourcesCompat.getFont(this, R.font.solaimanlipi)
-        for (i in 0 until toolbar.childCount) {
-            val view = toolbar.getChildAt(i)
-            if (view is TextView && view.text == supportActionBar?.title) {
-                view.typeface = typeface
-                break
-            }
-        }
-
         val recyclerView = findViewById<RecyclerView>(R.id.chapter_recycler)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
