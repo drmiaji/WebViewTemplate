@@ -1,30 +1,32 @@
 package com.drmiaji.webviewtemplate.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.drmiaji.webviewtemplate.databinding.ItemChapterBinding
 import com.drmiaji.webviewtemplate.models.ChapterItem
-import com.drmiaji.webviewtemplate.R
 
 class ChapterAdapter(
     private val items: List<ChapterItem>,
     private val onClick: (ChapterItem) -> Unit
 ) : RecyclerView.Adapter<ChapterAdapter.ViewHolder>() {
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val titleText: TextView = view.findViewById(R.id.chapter_title)
+    inner class ViewHolder(private val binding: ItemChapterBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
         fun bind(item: ChapterItem) {
-            titleText.text = item.title
-            itemView.setOnClickListener { onClick(item) }
+            binding.chapterTitle.text = item.title
+            binding.root.setOnClickListener { onClick(item) }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_chapter, parent, false)
-        return ViewHolder(view)
+        val binding = ItemChapterBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return ViewHolder(binding)
     }
 
     override fun getItemCount() = items.size

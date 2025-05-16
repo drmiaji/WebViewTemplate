@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/rounded_corner_layout"
+    android:padding="4dp">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -16,6 +18,7 @@
         android:id="@+id/chapter_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />     <!-- Fills remaining space -->
-
+        android:layout_weight="1"
+        android:padding="4dp"
+        android:clipToPadding="false" />
 </LinearLayout>
