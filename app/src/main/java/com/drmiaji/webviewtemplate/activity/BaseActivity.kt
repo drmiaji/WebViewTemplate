@@ -1,6 +1,7 @@
 package com.drmiaji.webviewtemplate.activity
 
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.ColorRes
@@ -10,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.drmiaji.webviewtemplate.R
+import com.google.android.material.snackbar.Snackbar
 
 @Suppress("DEPRECATION")
 abstract class BaseActivity : AppCompatActivity() {
@@ -34,24 +36,36 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private fun adjustSystemUI() {
         WindowCompat.setDecorFitsSystemWindows(window, true)
-        WindowInsetsControllerCompat(window, window.decorView).apply {
-            isAppearanceLightStatusBars = true
-            isAppearanceLightNavigationBars = true
-        }
 
+        // Use WindowInsetsControllerCompat properly
+        val controller = WindowInsetsControllerCompat(window, window.decorView)
+        controller.isAppearanceLightStatusBars = true
+        controller.isAppearanceLightNavigationBars = true
+
+        // Apply colors
         window.statusBarColor = ContextCompat.getColor(this, getStatusBarColor())
         window.navigationBarColor = ContextCompat.getColor(this, getStatusBarColor())
-
     }
 
     fun hideKeyboard() {
         val imm = getSystemService(INPUT_METHOD_SERVICE) as? InputMethodManager
         currentFocus?.let { view ->
             imm?.hideSoftInputFromWindow(view.windowToken, 0)
+            view.clearFocus() // Clear focus after hiding keyboard
         }
     }
 
     fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    /**
+     * Shows a snackbar message
+     * @param message The message to show
+     * @param duration How long to display the message
+     */
+    fun showSnackbar(message: String, duration: Int = Snackbar.LENGTH_SHORT) {
+        val rootView = findViewById<View>(android.R.id.content)
+        Snackbar.make(rootView, message, duration).show()
     }
 }

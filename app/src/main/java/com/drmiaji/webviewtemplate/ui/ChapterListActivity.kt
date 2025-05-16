@@ -2,11 +2,9 @@ package com.drmiaji.webviewtemplate.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.TextView
 import com.drmiaji.webviewtemplate.R
 import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.drmiaji.webviewtemplate.activity.BaseActivity
