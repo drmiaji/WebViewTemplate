@@ -1,0 +1,376 @@
+/* General Styling */
+html, html.light {
+    background-color: transparent;
+    color: #000;
+}
+
+html.dark {
+    background-color: #151515 !important;
+    color: #BBBBBB;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', 'Solaimanlipi', Tahoma, Geneva, Verdana, sans-serif, quran-arabic;
+    line-height: 1.2;
+    text-align: justify;
+    margin: 0;
+    padding: 6px;
+    transition: font-size 0.3s;
+}
+
+/* Typography */
+h1 {
+    font-size: 1.7em;
+    color: #008B5B;
+    margin-bottom: 0;
+}
+
+h3 {
+    font-size: 1.2em;
+    margin-top: 0;
+    padding-top: 2px;
+}
+
+p {
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+sup {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 13px;
+    font-family: serif;
+}
+
+/* Links */
+a {
+    color: #008B5B;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+a:active {
+    text-decoration: underline;
+}
+
+/* Lists */
+ul {
+    margin: 20px 30px;
+    padding: 0;
+    transition: all 0.3s;
+}
+
+li {
+    margin: 10px 0;
+}
+
+/* Horizontal Rules */
+hr {
+    margin: 40px 0;
+    border: 0;
+    border-top: 1px solid #c2c2c2;
+}
+
+html.dark hr {
+    border-color: #353535;
+}
+
+/* Reference Blocks */
+.reference {
+    position: relative;
+    background-color: #eefbdf;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 6px 0px;
+    overflow: hidden;
+}
+
+html.dark .reference {
+    background-color: #252525;
+}
+
+.reference p {
+    margin: 0;
+}
+
+.reference .arabic {
+    font-family: quran-arabic;
+    text-align: justify;
+    font-size: 25px;
+    line-height: 1.4;
+    direction: rtl;
+    -webkit-user-select: none;
+}
+
+.reference .translation {
+    text-align: justify;
+    padding: 5px;
+}
+
+.reference .footer {
+    border-top: 1px solid #c2c2c2;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html.dark .reference .footer {
+    border-top-color: #353535;
+}
+
+.reference .footer span {
+    font-size: 13px;
+}
+
+html.dark .reference .footer span {
+    color: #aaaaaa;
+}
+
+.reference .footer .sep {
+    flex-grow: 1;
+}
+
+.reference .footer a {
+    background-color: rgba(0, 139, 21, 0.2);
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.reference .footer a:active {
+    background-color: rgba(0, 139, 21, 0.3);
+}
+
+/* Blockquotes */
+.reference blockquote,
+.content blockquote {
+    margin: 5px 5px;
+    margin-top: 0px;
+    font-size: 24px;
+    padding: 10px;
+    line-height: 1.5;
+    direction: rtl;
+    text-align: justify;
+}
+
+.content .blockquote2 {
+    margin: 5px 5px;
+        font-size: 24px;
+        padding: 16px;
+        line-height: 1.5;
+        direction: rtl;
+    text-align: center;
+}
+/* Table of Contents (TOC) and Notes - Common Styling */
+.toc, .note {
+    margin: 10px 0;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Light Mode Styling */
+.toc, .note {
+    background-color: #f8f8f8; /* Soft light gray */
+    color: #2f302f;           /* Dark text for readability */
+    border: 1px solid #e0e0e0; /* Light gray border */
+}
+
+.toc a, .note a {
+    color: #0077cc; /* Vibrant blue for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.toc a:hover, .note a:hover {
+    color: #005fa3; /* Darker blue on hover */
+}
+
+/* Dark Mode Styling */
+html.dark .toc, html.dark .note {
+    background-color: #252525; /* Dark background */
+    color: #cccccc;            /* Softer light text */
+    border: 1px solid #353535; /* Subtle border */
+}
+
+html.dark .toc a, html.dark .note a {
+    color: #7db8ff; /* Softer blue for dark mode links */
+}
+
+html.dark .toc a:hover, html.dark .note a:hover {
+    color: #5fa3e0; /* Darker blue on hover for dark mode */
+}
+
+/* Title Styling */
+.toc .title, .note .title {
+    font-weight: bold;
+    padding-bottom: 10px;
+    font-size: 18px;
+    color: inherit; /* Matches the parent's color */
+}
+
+/* Responsive Adjustments for Small Screens */
+@media (max-width: 600px) {
+    .toc, .note {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+
+/* Buttons */
+.go-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: #008B5B;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.go-to-top:hover {
+    background-color: #005f3b;
+}
+/* Common Styles for Foldable Sections */
+.foldable-section {
+    border: 1px solid #ccc; /* Light mode border */
+    padding: 10px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    background-color: #eefbdf;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark .foldable-section {
+    border-color: #444;       /* Dark mode border */
+    background-color: #252525; /* Dark background */
+    color: #e0e0e0;           /* Light text for readability */
+}
+
+/* Toggle Button Styling */
+.toggle-button {
+    cursor: pointer;
+    background-color: #007BFF; /* Blue for light mode */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.toggle-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+html.dark .toggle-button {
+    background-color: #0056b3; /* Dark mode button background */
+    color: #ffffff;            /* Keep text white */
+}
+
+html.dark .toggle-button:hover {
+    background-color: #003a7a; /* Darker blue for hover in dark mode */
+}
+
+/* Chapter Styling */
+.chapter {
+    background-color: #eefbdf; /* Light green for light mode */
+    border-radius: 5px;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark .chapter {
+    background-color: #2f402f; /* Darker green for dark mode */
+    color: #e0e8e0;            /* Light text */
+}
+
+/* Chapter Title */
+.chapter-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+/* Arrow Icon */
+.arrow {
+    margin: 0 5px;
+    padding-left: 5px;
+    transition: transform 0.3s ease;
+    color: inherit; /* Matches text color for light/dark mode */
+}
+
+.arrow.collapsed {
+    transform: rotate(90deg); /* Rotated when collapsed */
+}
+
+/* Content Section */
+.content {
+    display: none;
+    margin: 5px;
+    padding: 10px;
+    background-color: #eefbdf; /* Light background for content */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+html.dark .content {
+    background-color: #343434; /*Forest Green#228B22, #353935 Darker background for content, Dark Green#006400;  */
+    color: #90EE90;  /*#90EE90 Light text */
+}
+
+/* Font Embedding */
+@font-face {
+    font-family: 'Solaimanlipi';
+    src: url('file:///android_asset/fonts/sol.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Responsive Adjustments for Small Screens */
+@media (max-width: 600px) {
+    .foldable-section {
+        padding: 8px;
+    }
+
+    .toggle-button {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    .content {
+        padding: 8px;
+    }
+}
+
+#playButton {
+            position: fixed; /* Makes the button float */
+            bottom: 20px; /* Distance from the bottom of the screen */
+            left: 20px; /* Distance from the right side of the screen */
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 50%; /* Makes the button circular */
+            border: 1px solid #ccc;
+            background-color: #007bff;
+            color: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a shadow for better visibility */
+            z-index: 1000; /* Ensures the button stays on top of other elements */
+        }
+
+        #playButton:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
