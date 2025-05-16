@@ -1,5 +1,6 @@
 package com.drmiaji.webviewtemplate.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.MenuItem
 import android.webkit.WebView
@@ -12,6 +13,7 @@ class WebViewActivity : BaseActivity() {
 
     override fun getLayoutResource() = R.layout.activity_webview
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onActivityReady(savedInstanceState: Bundle?) {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -23,7 +25,7 @@ class WebViewActivity : BaseActivity() {
 
         val webView = findViewById<WebView>(R.id.webview)
         webView.webViewClient = WebViewClient()
-        webView.settings.javaScriptEnabled = false
+        webView.settings.javaScriptEnabled = true
 
         val fileName = intent.getStringExtra("fileName") ?: "chapter1.html"
 

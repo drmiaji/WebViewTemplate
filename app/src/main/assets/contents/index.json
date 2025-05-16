@@ -1,52 +1,12 @@
 [
   {
     "id": 1,
-    "title": "দুরূদ ও সালামের গুরুত্ব ও ফযিলত",
-    "path": "durood_fazilat.html"
-  },
-  {
-    "id": 2,
-    "title": "রাসূল [ﷺ] বিভিন্ন শব্দে ও বাক্যে দুরূদ শরীফ শিক্ষা দিয়েছেন",
-    "path": "durood_by_prophet.html"
-  },
-  {
-    "id": 3,
-    "title": "নিজস্ব শব্দ ও বাক্যে দুরূদ শরীফ কি অবৈধ?",
-    "path": "durood_own_words.html"
-  },
-  {
-    "id": 4,
-    "title": "দুরূদে তাজ",
-    "path": "durood_e_taaz.html"
-  },
-  {
-    "id": 5,
     "title": "বিভিন্ন ইমামগণের কিছু খাস দুরূদ শরীফ",
     "path": "durood_by_imams.html"
   },
   {
-    "id": 6,
-    "title": "দুরূদ লাখী",
-    "path": "durood_by_lakhi.html"
-  },
-  {
-    "id": 7,
+    "id": 2,
     "title": "দুরূদ ফাতিহ",
     "path": "durood_by_fatih.html"
-  },
-  {
-    "id": 8,
-    "title": "দোয়ায়ে জওশান কাবীর, রাসূল [ﷺ] কর্তৃক শেখানো দোয়া",
-    "path": "jawshan_kabeer.html"
-  },
-  {
-    "id": 9,
-    "title": "দুরূদ-এ-মুক্বাদ্দাস",
-    "path": "durood_e_muqaddas.html"
-  },
-  {
-    "id": 10,
-    "title": "দুরূদ-এ-হাজারী",
-    "path": "durood_e_hazari.html"
   }
 ]
