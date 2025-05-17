@@ -7,6 +7,7 @@ import android.view.MenuItem
 import com.drmiaji.webviewtemplate.R
 import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
+import androidx.compose.ui.res.stringResource
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,8 +27,8 @@ class ChapterListActivity : BaseActivity() {
 
         // Set up the back button in the action bar
         supportActionBar?.apply {
-            title = "Chapters" // Or dynamic title if you want
-            setDisplayHomeAsUpEnabled(true) // This displays the back arrow
+            title = getString(R.string.app_name) // ✅ Use getString in an Activity context
+            setDisplayHomeAsUpEnabled(true)
 
             // Option 1: Tint a custom back arrow
             // setHomeAsUpIndicator(R.drawable.ic_arrow_back) // Optional: set custom back arrow

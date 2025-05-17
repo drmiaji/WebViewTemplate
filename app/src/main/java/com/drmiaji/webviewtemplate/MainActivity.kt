@@ -146,7 +146,7 @@ fun MainScreen(onLogoClick: () -> Unit) {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text("Al-Quran App") },
+                    title = { Text(text = stringResource(id = R.string.app_name)) },
                     navigationIcon = {
                         IconButton(onClick = { scope.launch { drawerState.open() } }) {
                             Icon(Icons.Default.Menu, contentDescription = "Menu")
