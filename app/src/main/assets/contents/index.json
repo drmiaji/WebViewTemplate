@@ -2,11 +2,51 @@
   {
     "id": 1,
     "title": "বিভিন্ন ইমামগণের কিছু খাস দুরূদ শরীফ",
-    "path": "durood_by_imams.html"
+    "path": "chapter01.html"
   },
   {
     "id": 2,
     "title": "দুরূদ ফাতিহ",
-    "path": "durood_by_fatih.html"
+    "path": "chapter02.html"
+  },
+  {
+    "id": 3,
+    "title": "বিভিন্ন ইমামগণের কিছু খাস দুরূদ শরীফ",
+    "path": "chapter03.html"
+  },
+  {
+    "id": 4,
+    "title": "দুরূদ ফাতিহ",
+    "path": "chapter04.html"
+  },
+  {
+    "id": 5,
+    "title": "বিভিন্ন ইমামগণের কিছু খাস দুরূদ শরীফ",
+    "path": "chapter05.html"
+  },
+  {
+    "id": 6,
+    "title": "দুরূদ ফাতিহ",
+    "path": "chapter06.html"
+  },
+  {
+    "id": 7,
+    "title": "বিভিন্ন ইমামগণের কিছু খাস দুরূদ শরীফ",
+    "path": "chapter07.html"
+  },
+  {
+    "id": 8,
+    "title": "দুরূদ ফাতিহ",
+    "path": "chapter08.html"
+  },
+  {
+    "id": 9,
+    "title": "বিভিন্ন ইমামগণের কিছু খাস দুরূদ শরীফ",
+    "path": "chapter09.html"
+  },
+  {
+    "id": 10,
+    "title": "দুরূদ ফাতিহ",
+    "path": "chapter10.html"
   }
 ]
