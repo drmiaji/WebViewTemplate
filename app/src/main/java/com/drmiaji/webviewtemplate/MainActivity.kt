@@ -1,27 +1,32 @@
 package com.drmiaji.webviewtemplate
 
+import android.app.Activity
 import android.content.Intent
-import android.graphics.Color.green
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.Book
+import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
@@ -30,7 +35,6 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -41,8 +45,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
-import androidx.compose.material3.NavigationDrawerItem
-import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -57,26 +59,23 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.BlendMode.Companion.Screen
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.test.isSelected
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.PopupProperties
 import com.drmiaji.webviewtemplate.ui.ChapterListActivity
 import com.drmiaji.webviewtemplate.ui.theme.WebviewTemplateTheme
 import kotlinx.coroutines.launch
-
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,67 +101,43 @@ fun MainScreen(onLogoClick: () -> Unit) {
     var showMenu by remember { mutableStateOf(false) }
     val context = LocalContext.current
 
+    val menuItems = listOf(
+        DrawerItem("হোম", "সূচীপত্র: বিষয়বস্তু দেখুন", Icons.Default.Home, ChapterListActivity::class.java),
+        DrawerItem("সেটিংস", "এপ নিয়ন্ত্রণ করুন", Icons.Default.Settings, ChapterListActivity::class.java),
+        DrawerItem("এবাউট", "আমাদের সম্পর্কে", Icons.Default.Person, ChapterListActivity::class.java)
+    )
+
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet(
-                modifier = Modifier.width(300.dp),
-                drawerContainerColor = MaterialTheme.colorScheme.surface
+                modifier = Modifier
+                    .width(300.dp)
+                    .background(
+                        Brush.verticalGradient(
+                            colors = listOf(Color(0xFF1D3557), Color(0xFF457B9D))
+                        )
+                    ),
+                drawerContainerColor = Color.Transparent // Important if you're using background()
             ) {
-                // Header Section
-                Column(
+                MyLogo(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
-                ) {
-                    Text(
-                        text = "Al Quran | Your speaker",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-                    Text(
-                        text = "Dr Abdul-Baten Maji",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
+                        .padding(horizontal = 20.dp, vertical = 24.dp)
+                )
 
                 HorizontalDivider()
 
-                // Navigation Items
-                val menuItems = listOf(
-                    DrawerItem("Home", "Oblia Finder | Parent Refuse", Icons.Default.Home),
-                    DrawerItem("Settings", "Officer", Icons.Default.Settings),
-                    DrawerItem("About Translations", "sender service fees sent", Icons.Default.Info),
-                    DrawerItem("Terms of use", "check whether or not", Icons.Default.Menu),
-                    DrawerItem("Books Published by Us!", "", Icons.Default.Build),
-                    DrawerItem("About", "", Icons.Default.Person)
-                )
+                var selectedItem by remember { mutableStateOf<DrawerItem?>(null) }
 
                 menuItems.forEach { item ->
-                    NavigationDrawerItem(
-                        label = {
-                            Column {
-                                Text(
-                                    text = item.title,
-                                    style = MaterialTheme.typography.bodyLarge
-                                )
-                                if (item.subtitle.isNotEmpty()) {
-                                    Text(
-                                        text = item.subtitle,
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
-                                }
-                            }
-                        },
-                        selected = false,
-                        icon = { Icon(item.icon, contentDescription = item.title) },
+                    DrawerCardItem(
+                        item = item,
+                        selected = item == selectedItem,
                         onClick = {
-                            // Handle navigation for each item
+                            selectedItem = item
+                            context.startActivity(Intent(context, item.activityClass))
                             scope.launch { drawerState.close() }
-                        },
-                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp)
+                        }
                     )
                 }
             }
@@ -182,18 +157,19 @@ fun MainScreen(onLogoClick: () -> Unit) {
                             IconButton(onClick = { showMenu = !showMenu }) {
                                 Icon(Icons.Default.MoreVert, contentDescription = "More")
                             }
-
                             DropdownMenu(
                                 expanded = showMenu,
                                 onDismissRequest = { showMenu = false }
                             ) {
                                 DropdownMenuItem(
                                     text = { Text("About") },
-                                    onClick = { showMenu = false }
+                                    onClick = { context.startActivity(Intent(context,
+                                        ChapterListActivity::class.java)); showMenu = false }
                                 )
                                 DropdownMenuItem(
                                     text = { Text("Settings") },
-                                    onClick = { showMenu = false }
+                                    onClick = { context.startActivity(Intent(context,
+                                        ChapterListActivity::class.java)); showMenu = false }
                                 )
                             }
                         }
@@ -210,15 +186,25 @@ fun MainScreen(onLogoClick: () -> Unit) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
+                    .background(
+                        Brush.verticalGradient(
+                            colors = listOf(Color(0xFFE0F7FA), Color(0xFF80DEEA))
+                        )
+                    )
                     .padding(innerPadding),
                 contentAlignment = Alignment.Center
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.tajweed01),
                     contentDescription = "App Logo",
+                    contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .size(500.dp)
+                        .fillMaxWidth(0.85f)
+                        .aspectRatio(1f)
+                        .clip(RoundedCornerShape(24.dp))
                         .clickable { onLogoClick() }
+                        .border(2.dp, Color.White, RoundedCornerShape(24.dp))
+                        .shadow(8.dp, RoundedCornerShape(24.dp))
                 )
             }
         }
@@ -228,52 +214,24 @@ fun MainScreen(onLogoClick: () -> Unit) {
 // Data class for drawer items
 data class DrawerItem(
     val title: String,
-    val subtitle: String,
-    val icon: ImageVector
+    val subtitle: String = "",
+    val icon: ImageVector,
+    val activityClass: Class<out Activity>
 )
 
 @Composable
-fun DrawerMenuItem(
-    icon: ImageVector,
-    label: String,
-    onClick: () -> Unit
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = onClick)
-            .padding(vertical = 12.dp, horizontal = 16.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = label,
-            modifier = Modifier.size(24.dp)
-        )
-        Spacer(modifier = Modifier.width(16.dp))
-        Text(
-            text = label,
-            style = MaterialTheme.typography.bodyLarge
-        )
-    }
-}
-
-@Composable
-fun MyLogo(
-    modifier: Modifier = Modifier
-) {
+fun MyLogo(modifier: Modifier = Modifier) {
     Card(
-        modifier = modifier,
+        modifier = modifier.fillMaxWidth(),
         shape = CardDefaults.outlinedShape,
         colors = CardDefaults.cardColors(containerColor = Color(0xFF0047AB)),
         border = CardDefaults.outlinedCardBorder(),
         elevation = CardDefaults.outlinedCardElevation()
     ) {
         Row(
-            modifier = modifier,
+            modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-
             Image(
                 painter = painterResource(R.drawable.icon),
                 contentDescription = null,
@@ -283,19 +241,96 @@ fun MyLogo(
             Spacer(Modifier.width(8.dp))
             Column {
                 Text(
-                    text = "তাজবীদ",
+                    text = stringResource(id = R.string.app_name), // "তাজবীদ: সহজ নিয়মে কুরআন শেখা"
                     style = TextStyle(
-                        fontSize = 18.sp, // textAlign = TextAlign.Justify,
-                        fontFamily = FontFamily(Font(R.font.solaimanlipi)),
+                        fontSize = 18.sp,
+                        fontFamily = FontFamily(Font(R.font.solaimanlipi))
                     ),
                     color = Color.LightGray
                 )
                 Text(
-                    text = "ডক্টর আব্দুল বাতেন মিয়াজী", color = Color.LightGray,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontFamily = FontFamily(Font(R.font.solaimanlipi))
+                    text = "ডক্টর আব্দুল বাতেন মিয়াজী",
+                    style = MaterialTheme.typography.titleMedium.copy(
+                        fontFamily = FontFamily(Font(R.font.solaimanlipi))
+                    ),
+                    color = Color.LightGray
                 )
             }
+        }
+    }
+}
+
+@Composable
+fun DrawerCardItem(
+    item: DrawerItem,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    selected: Boolean = false
+) {
+    val shape = RoundedCornerShape(12.dp)
+
+    // Animate background color
+    val backgroundColor by animateColorAsState(
+        targetValue = if (selected) Color(0xFFE0F2F1) else Color(0xFFF7F7F7),
+        animationSpec = tween(durationMillis = 300),
+        label = "bgColor"
+    )
+
+    val borderColor = if (selected) Color(0xFF0047AB) else Color.LightGray
+    val iconTint = if (selected) Color(0xFF0047AB) else MaterialTheme.colorScheme.onSurfaceVariant
+
+    Card(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 12.dp, vertical = 6.dp)
+            .clickable(onClick = onClick),
+        colors = CardDefaults.cardColors(containerColor = backgroundColor),
+        border = BorderStroke(1.dp, borderColor),
+        shape = shape,
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    imageVector = item.icon,
+                    contentDescription = item.title,
+                    tint = iconTint,
+                    modifier = Modifier.size(28.dp)
+                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Column {
+                    Text(
+                        text = item.title,
+                        style = TextStyle(
+                            fontSize = 18.sp,
+                            fontFamily = FontFamily(Font(R.font.solaimanlipi))
+                        ),
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    if (item.subtitle.isNotEmpty()) {
+                        Text(
+                            text = item.subtitle,
+                            style = TextStyle(
+                                fontSize = 13.sp,
+                                fontFamily = FontFamily(Font(R.font.solaimanlipi))
+                            ),
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+            }
+
+            Icon(
+                imageVector = Icons.Default.ChevronRight,
+                contentDescription = "Navigate",
+                tint = iconTint
+            )
         }
     }
 }
