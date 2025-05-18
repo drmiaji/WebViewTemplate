@@ -8,15 +8,8 @@
     android:background="?android:colorBackground"
     android:padding="4dp">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        app:titleCentered="true"
-        style="@style/CustomToolbarStyle"
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="?attr/actionBarTheme" />
+    <!-- Include the reusable toolbar -->
+    <include layout="@layout/toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chapter_recycler"

@@ -3,6 +3,7 @@ package com.drmiaji.webviewtemplate.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -13,6 +14,7 @@ import com.drmiaji.webviewtemplate.R
 import com.drmiaji.webviewtemplate.activity.BaseActivity
 import com.drmiaji.webviewtemplate.adapter.ChapterAdapter
 import com.drmiaji.webviewtemplate.viewmodel.ChapterViewModel
+import com.google.android.material.appbar.MaterialToolbar
 
 
 class ChapterListActivity : BaseActivity() {
@@ -21,25 +23,25 @@ class ChapterListActivity : BaseActivity() {
     override fun getLayoutResource() = R.layout.activity_chapter_list
 
     override fun onActivityReady(savedInstanceState: Bundle?) {
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        val titleTextView = findViewById<TextView>(R.id.toolbar_title)
+
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+// Add this line to hide the default title
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        // Set up the back button in the action bar
-        supportActionBar?.apply {
-            title = getString(R.string.app_name) // ✅ Use getString in an Activity context
-            setDisplayHomeAsUpEnabled(true)
+// Set custom title directly to the embedded TextView
+        titleTextView.text = getString(R.string.app_name)
 
-            // Option 1: Tint a custom back arrow
-            // setHomeAsUpIndicator(R.drawable.ic_arrow_back) // Optional: set custom back arrow
-        }
-
-        // Change the color of the navigation icon (back arrow) - non-deprecated approach
+// Optional: Tint the back arrow (navigation icon)
         val navIconColor = ContextCompat.getColor(this, R.color.nav_icon_color)
         toolbar.navigationIcon?.let { originalDrawable ->
             val wrappedDrawable = DrawableCompat.wrap(originalDrawable).mutate()
             DrawableCompat.setTint(wrappedDrawable, navIconColor)
             toolbar.navigationIcon = wrappedDrawable
         }
+
 
         val recyclerView = findViewById<RecyclerView>(R.id.chapter_recycler)
         recyclerView.layoutManager = LinearLayoutManager(this)
