@@ -32,7 +32,7 @@ abstract class BaseActivity : AppCompatActivity() {
     @ColorRes
     open fun getStatusBarColor(): Int = android.R.color.white
 
-    open fun getThemeId(): Int = R.style.Theme_WebviewTemplate_Material
+    open fun getThemeId(): Int = R.style.AppTheme
 
     private fun adjustSystemUI() {
         WindowCompat.setDecorFitsSystemWindows(window, true)

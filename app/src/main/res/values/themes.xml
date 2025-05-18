@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base Theme (Supports Dynamic Colors) -->
-    <style name="AppTheme" parent="Theme.Material3.DynamicColors.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary Colors -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryContainer">@color/primary_container</item>
@@ -12,7 +11,7 @@
         <item name="colorSecondaryContainer">@color/secondary_container</item>
         <item name="colorOnSecondary">@color/on_secondary</item>
 
-        <!-- Background/Surface -->
+        <!-- Background / Surface -->
         <item name="android:colorBackground">@color/background</item>
         <item name="colorSurface">@color/surface</item>
         <item name="colorSurfaceVariant">@color/surface_variant</item>
@@ -21,13 +20,13 @@
         <!-- Status/Navigation Bar -->
         <item name="android:statusBarColor">?attr/colorPrimaryContainer</item>
         <item name="android:navigationBarColor">?attr/colorSurface</item>
-        <item name="android:windowLightStatusBar">false</item> <!-- Auto-adjusts for dark mode -->
+        <item name="android:windowLightStatusBar">true</item> <!-- Light icons if background is light -->
 
         <!-- Components -->
         <item name="toolbarStyle">@style/CustomToolbarStyle</item>
         <item name="buttonStyle">@style/Widget.App.Button.Filled</item>
 
-        <!-- State Colors -->
+        <!-- Other States -->
         <item name="colorControlHighlight">@color/pressed_state</item>
         <item name="colorOnSurfaceVariant">@color/disabled_text</item>
         <item name="android:textColorHint">@color/outline</item>

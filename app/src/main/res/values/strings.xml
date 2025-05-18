@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Webview Template</string>
+    <string name="enter_search_text">Enter search text</string>
 </resources>

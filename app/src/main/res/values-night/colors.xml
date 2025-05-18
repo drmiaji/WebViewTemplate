@@ -34,4 +34,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorIcon">#CCCCCC</color>
+    <color name="nav_icon_color">#000000</color> <!-- black or any suitable dark color -->
+
 </resources>

@@ -34,9 +34,10 @@ class ChapterListActivity : BaseActivity() {
         }
 
         // Change the color of the navigation icon (back arrow) - non-deprecated approach
+        val navIconColor = ContextCompat.getColor(this, R.color.nav_icon_color)
         toolbar.navigationIcon?.let { originalDrawable ->
             val wrappedDrawable = DrawableCompat.wrap(originalDrawable).mutate()
-            DrawableCompat.setTint(wrappedDrawable, ContextCompat.getColor(this, R.color.white))
+            DrawableCompat.setTint(wrappedDrawable, navIconColor)
             toolbar.navigationIcon = wrappedDrawable
         }
 

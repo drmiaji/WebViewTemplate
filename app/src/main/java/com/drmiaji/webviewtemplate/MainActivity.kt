@@ -25,10 +25,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Book
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Person
@@ -48,7 +46,6 @@ import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -75,7 +72,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.drmiaji.webviewtemplate.activity.SettingsActivity
 import com.drmiaji.webviewtemplate.ui.ChapterListActivity
-import com.drmiaji.webviewtemplate.ui.theme.WebviewTemplateTheme
+import com.drmiaji.webviewtemplate.ui.theme.MyAppTheme
+import com.drmiaji.webviewtemplate.ui.theme.topBarColors
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -83,7 +81,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            WebviewTemplateTheme {
+            MyAppTheme {
                 MainScreen(
                     onNavigateToContents = { goToContents() },
                     onNavigateToSettings = { goToSettings() },
@@ -127,11 +125,15 @@ fun MainScreen(
                     .width(300.dp)
                     .background(
                         Brush.verticalGradient(
-                            colors = listOf(Color(0xFF1D3557), Color(0xFF457B9D))
+                            colors = listOf(
+                                MaterialTheme.colorScheme.primaryContainer,
+                                MaterialTheme.colorScheme.primary
+                            )
                         )
                     ),
-                drawerContainerColor = Color.Transparent // Important if you're using background()
-            ) {
+                drawerContainerColor = Color.Transparent
+            )
+            {
                 MyLogo(
                     modifier = Modifier
                         .padding(horizontal = 20.dp, vertical = 24.dp)
@@ -186,21 +188,20 @@ fun MainScreen(
                             }
                         }
                     },
-                    colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = Color(0xFF0047AB),
-                        titleContentColor = Color.White,
-                        navigationIconContentColor = Color.White,
-                        actionIconContentColor = Color.White
-                    )
+                    colors = topBarColors()
                 )
             }
         ) { innerPadding ->
+            val colors = MaterialTheme.colorScheme
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .background(
                         Brush.verticalGradient(
-                            colors = listOf(Color(0xFFE0F7FA), Color(0xFF80DEEA))
+                            colors = listOf(
+                                colors.secondaryContainer,  // softer shade for top
+                                colors.secondary            // stronger shade for bottom
+                            )
                         )
                     )
                     .padding(innerPadding),
@@ -233,10 +234,11 @@ data class DrawerItem(
 
 @Composable
 fun MyLogo(modifier: Modifier = Modifier) {
+    val colors = MaterialTheme.colorScheme
     Card(
         modifier = modifier.fillMaxWidth(),
         shape = CardDefaults.outlinedShape,
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF0047AB)),
+        colors = CardDefaults.cardColors(containerColor = colors.primary),  // Use primary or any appropriate color
         border = CardDefaults.outlinedCardBorder(),
         elevation = CardDefaults.outlinedCardElevation()
     ) {
@@ -251,21 +253,22 @@ fun MyLogo(modifier: Modifier = Modifier) {
                 contentScale = ContentScale.Inside
             )
             Spacer(Modifier.width(8.dp))
+            val colors = MaterialTheme.colorScheme
             Column {
                 Text(
-                    text = stringResource(id = R.string.app_name), // "তাজবীদ: সহজ নিয়মে কুরআন শেখা"
+                    text = stringResource(id = R.string.app_name),
                     style = TextStyle(
                         fontSize = 18.sp,
                         fontFamily = FontFamily(Font(R.font.solaimanlipi))
                     ),
-                    color = Color.LightGray
+                    color = colors.background // instead of Color.LightGray
                 )
                 Text(
                     text = "ডক্টর আব্দুল বাতেন মিয়াজী",
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontFamily = FontFamily(Font(R.font.solaimanlipi))
                     ),
-                    color = Color.LightGray
+                    color = colors.background
                 )
             }
         }
@@ -283,14 +286,14 @@ fun DrawerCardItem(
 
     // Animate background color
     val backgroundColor by animateColorAsState(
-        targetValue = if (selected) Color(0xFFE0F2F1) else Color(0xFFF7F7F7),
+        targetValue = if (selected) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.surfaceVariant,
         animationSpec = tween(durationMillis = 300),
         label = "bgColor"
     )
 
-    val borderColor = if (selected) Color(0xFF0047AB) else Color.LightGray
-    val iconTint = if (selected) Color(0xFF0047AB) else MaterialTheme.colorScheme.onSurfaceVariant
-
+// Border and icon tint colors
+    val borderColor = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline
+    val iconTint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -350,7 +353,7 @@ fun DrawerCardItem(
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPreview() {
-    WebviewTemplateTheme {
+    MyAppTheme {
         MainScreen(onLogoClick = {})
     }
 }

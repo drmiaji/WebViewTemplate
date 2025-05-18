@@ -15,15 +15,18 @@
 
         <activity
             android:name=".ui.WebViewActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme"/>
 
         <activity
             android:name=".ui.ChapterListActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme"/>
 
         <activity
             android:name=".activity.SettingsActivity"
-            android:exported="false" /> <!-- Inherits AppTheme -->
+            android:exported="false"
+            android:theme="@style/AppTheme"/> <!-- Inherits AppTheme -->
 
         <activity
             android:name=".MainActivity"

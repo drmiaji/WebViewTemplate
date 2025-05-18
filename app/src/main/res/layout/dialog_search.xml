@@ -9,7 +9,8 @@
         android:id="@+id/search_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter search text"
+        android:autofillHints=""
+        android:hint="@string/enter_search_text"
         android:inputType="text"
         android:maxLines="1"
         android:imeOptions="actionSearch" />
