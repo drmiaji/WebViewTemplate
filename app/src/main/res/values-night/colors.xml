@@ -35,5 +35,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorIcon">#CCCCCC</color>
     <color name="nav_icon_color">#000000</color> <!-- black or any suitable dark color -->
-
+    <color name="chapter_text_color">#BBDEFB</color> <!-- light blue -->
+    <color name="chapter_bg_color">#121212</color> <!-- dark background -->
 </resources>
