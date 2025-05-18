@@ -9,6 +9,9 @@ import com.drmiaji.webviewtemplate.MainActivity
 object ThemeUtils {
     private const val PREF_NAME = "theme_pref"
     private const val KEY_THEME_MODE = "theme_mode"
+    const val THEME_LIGHT = "light"
+    const val THEME_DARK = "dark"
+    const val THEME_SYSTEM = "system"
 
     fun applyTheme(context: Context) {
         val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
@@ -20,19 +23,18 @@ object ThemeUtils {
     }
 
     fun saveThemeMode(context: Context, mode: String) {
+        val validModes = setOf(THEME_LIGHT, THEME_DARK, THEME_SYSTEM)
+        if (mode !in validModes) return
+
         val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         prefs.edit { putString(KEY_THEME_MODE, mode) }
         applyTheme(context)
+        restartApp(context)
     }
 
-//    private fun restartApp(context: Context) {
-//        val intent = Intent(context, MainActivity::class.java)
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-//        context.startActivity(intent)
-//    }
-
-    fun getSavedMode(context: Context): String {
-        val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        return prefs.getString(KEY_THEME_MODE, "system") ?: "system"
+    private fun restartApp(context: Context) {
+        val intent = Intent(context, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        context.startActivity(intent)
     }
 }

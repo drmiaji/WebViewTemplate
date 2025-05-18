@@ -32,19 +32,31 @@ abstract class BaseActivity : AppCompatActivity() {
     @ColorRes
     open fun getStatusBarColor(): Int = android.R.color.white
 
-    open fun getThemeId(): Int = R.style.Theme_WebviewTemplate
+    open fun getThemeId(): Int = R.style.Theme_WebviewTemplate_Material
 
     private fun adjustSystemUI() {
         WindowCompat.setDecorFitsSystemWindows(window, true)
 
-        // Use WindowInsetsControllerCompat properly
-        val controller = WindowInsetsControllerCompat(window, window.decorView)
-        controller.isAppearanceLightStatusBars = true
-        controller.isAppearanceLightNavigationBars = true
+        val isLightTheme = isUsingLightTheme()
 
-        // Apply colors
-        window.statusBarColor = ContextCompat.getColor(this, getStatusBarColor())
-        window.navigationBarColor = ContextCompat.getColor(this, getStatusBarColor())
+        // Set status and nav bar colors
+        val color = ContextCompat.getColor(this, getStatusBarColor())
+        window.statusBarColor = color
+        window.navigationBarColor = color
+
+        // Adjust light/dark icons based on theme brightness
+        val controller = WindowInsetsControllerCompat(window, window.decorView)
+        controller.isAppearanceLightStatusBars = isLightTheme
+        controller.isAppearanceLightNavigationBars = isLightTheme
+    }
+
+    /**
+     * Determines whether the current theme is light or dark.
+     */
+    private fun isUsingLightTheme(): Boolean {
+        val uiMode = resources.configuration.uiMode
+        val nightMask = uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK
+        return nightMask != android.content.res.Configuration.UI_MODE_NIGHT_YES
     }
 
     fun hideKeyboard() {
