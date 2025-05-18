@@ -27,7 +27,7 @@ class ChapterListActivity : BaseActivity() {
         val titleTextView = findViewById<TextView>(R.id.toolbar_title)
 
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 // Add this line to hide the default title
         supportActionBar?.setDisplayShowTitleEnabled(false)
 

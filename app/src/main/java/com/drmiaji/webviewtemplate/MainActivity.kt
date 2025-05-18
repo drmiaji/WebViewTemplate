@@ -113,7 +113,7 @@ fun MainScreen(
 
     val menuItems = listOf(
         DrawerItem("হোম", "সূচীপত্র: বিষয়বস্তু দেখুন", Icons.Default.Home, ChapterListActivity::class.java),
-        DrawerItem("সেটিংস", "এপ নিয়ন্ত্রণ করুন", Icons.Default.Settings, ChapterListActivity::class.java),
+        DrawerItem("সেটিংস", "এপ নিয়ন্ত্রণ করুন", Icons.Default.Settings, SettingsActivity::class.java),
         DrawerItem("এবাউট", "আমাদের সম্পর্কে", Icons.Default.Person, ChapterListActivity::class.java)
     )
 
