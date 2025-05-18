@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.android)
     implementation(libs.androidx.navigation.compose.jvmstubs)
     implementation(libs.androidx.ui.test.android)
+    implementation(libs.androidx.preference.ktx)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.appcompat)

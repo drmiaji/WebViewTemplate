@@ -1,16 +1,15 @@
 package com.drmiaji.webviewtemplate.ui
 
 import android.content.Intent
-import androidx.core.graphics.drawable.DrawableCompat
 import android.os.Bundle
 import android.view.MenuItem
-import com.drmiaji.webviewtemplate.R
 import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
-import androidx.compose.ui.res.stringResource
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.drmiaji.webviewtemplate.R
 import com.drmiaji.webviewtemplate.activity.BaseActivity
 import com.drmiaji.webviewtemplate.adapter.ChapterAdapter
 import com.drmiaji.webviewtemplate.viewmodel.ChapterViewModel

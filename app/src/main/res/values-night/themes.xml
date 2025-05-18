@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.WebviewTemplate.Material" parent="android:Theme.Material">
+        <!-- You can override dark-specific colors here -->
+        <item name="android:colorBackground">@color/black</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/teal_200</item>
+    </style>
+</resources>

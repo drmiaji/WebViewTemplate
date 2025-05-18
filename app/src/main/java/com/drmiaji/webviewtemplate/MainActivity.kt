@@ -73,6 +73,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.drmiaji.webviewtemplate.activity.SettingsActivity
 import com.drmiaji.webviewtemplate.ui.ChapterListActivity
 import com.drmiaji.webviewtemplate.ui.theme.WebviewTemplateTheme
 import kotlinx.coroutines.launch
@@ -83,7 +84,11 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             WebviewTemplateTheme {
-                MainScreen { goToContents() }
+                MainScreen(
+                    onNavigateToContents = { goToContents() },
+                    onNavigateToSettings = { goToSettings() },
+                    onLogoClick = { goToContents() }
+                )
             }
         }
     }
@@ -91,11 +96,18 @@ class MainActivity : ComponentActivity() {
     private fun goToContents() {
         startActivity(Intent(this, ChapterListActivity::class.java)) // ← replace with your actual Activity
     }
+    private fun goToSettings() {
+        startActivity(Intent(this, SettingsActivity::class.java)) // ← replace with your actual Activity
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(onLogoClick: () -> Unit) {
+fun MainScreen(
+    onNavigateToContents: () -> Unit = {},
+    onNavigateToSettings: () -> Unit = {},
+    onLogoClick: () -> Unit = {}
+) {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     var showMenu by remember { mutableStateOf(false) }
@@ -169,7 +181,7 @@ fun MainScreen(onLogoClick: () -> Unit) {
                                 DropdownMenuItem(
                                     text = { Text("Settings") },
                                     onClick = { context.startActivity(Intent(context,
-                                        ChapterListActivity::class.java)); showMenu = false }
+                                        SettingsActivity::class.java)); showMenu = false }
                                 )
                             }
                         }
