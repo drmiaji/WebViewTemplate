@@ -12,6 +12,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.drmiaji.webviewtemplate.R
 import com.drmiaji.webviewtemplate.activity.BaseActivity
+import com.drmiaji.webviewtemplate.utils.ThemeUtils
 
 class WebViewActivity : BaseActivity() {
 
@@ -54,16 +55,28 @@ class WebViewActivity : BaseActivity() {
 
         val fileName = intent.getStringExtra("fileName") ?: "chapter1.html"
 
-        // Load base.html template
+        // Determine the current theme mode
+        val themeMode = ThemeUtils.getCurrentThemeMode(this)
+        val themeClass = when (themeMode) {
+            ThemeUtils.THEME_DARK -> "dark"
+            ThemeUtils.THEME_LIGHT -> "light"
+            else -> {
+                // Fallback to system
+                val nightModeFlags = resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK
+                if (nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES) "dark" else "light"
+            }
+        }
+
+// Load base.html template
         val baseHtml = assets.open("contents/base.html").bufferedReader().use { it.readText() }
-        // Load content HTML
+// Load content HTML
         val contentHtml = assets.open("contents/topics/$fileName").bufferedReader().use { it.readText() }
 
-        // Inject content into template
+// Inject content and theme into template
         val fullHtml = baseHtml
             .replace("{{CONTENT}}", contentHtml)
-            .replace("{{THEME}}", "light") // or "dark" for dark mode
-            .replace("{{STYLE}}", "")       // leave blank if style.css handles styling
+            .replace("{{THEME}}", themeClass)
+            .replace("{{STYLE}}", "")
 
         webView.loadDataWithBaseURL(
             "file:///android_asset/contents/",
