@@ -80,9 +80,9 @@
         এ ব্যাপারে বিস্তারিত জানতে মিনহাজ পাবলিকেশন থেকে প্রকাশিত আড়াই হাজার দুরূদ সম্বলিত
         "দালায়েলুল বারাকা" দরূদ গ্রন্থটি সংগ্রহ করুন।
     </p>
-    <a class="go-to-top" href="#">Go to Top</a>
+    
 </div>
-<button id="themeToggle">Toggle Dark/Light Mode</button>
+
 <div class="reference">
     <h3 id="durood_nariya">দুরূদে নারিয়াহ্</h3>
 </div>
@@ -110,7 +110,7 @@
         করা হয়। আর রহমত বর্ষণ কর তার পরিবার ও সাহাবিদের উপর তোমার জানা সংখ্যানুযায়ী, প্রতিটি
         মুহূর্তে ও নিঃশ্বাসে।
     </p>
-    <a class="go-to-top" href="#">Go to Top</a>
+    
 </div>
 
 <div class="reference">
@@ -160,7 +160,7 @@
             দাও অবশ্যই
             তুমি সর্বশক্তিমান এবং সর্বোচ্চ দয়াবান
         </p>
-        <a class="go-to-top" href="#">Go to Top</a>
+        
     </div>
 </div>
 
@@ -195,7 +195,7 @@
         path.
         May Allah send prayers upon his Family according to his greatness and magnificent rank.
     </p>
-    <a class="go-to-top" href="#">Go to Top</a>
+    
 </div>
 
 <div class="reference">
@@ -236,35 +236,10 @@
             সা-লিহীনা ওয়ারহামনা মাআহুম্ বিরাহমাতিকা ইয়া আরহামার রাহিমীন।
         </div>
     </div>
-    <a class="go-to-top" href="#">Go to Top</a>
+    
 </div>
 <div class="reference">
     <p><strong>তথ্য সংকলনে এবং সম্পাদনায়:</strong><strong> ডক্টর আব্দুল
         বাতেন মিয়াজী।</strong>
     </p>
 </div>
-
-
-<script>
-    // JavaScript to handle the toggle functionality
-    document.querySelectorAll('.chapter-title').forEach(title => {
-        title.addEventListener('click', () => {
-            const arrow = title.querySelector('.arrow');
-            const content = title.nextElementSibling;
-            arrow.classList.toggle('collapsed');
-            content.style.display = content.style.display === 'block' ? 'none' : 'block';
-        });
-    });
-
-    // Automatically expand the chapter if linked directly via anchor
-    const hash = window.location.hash;
-    if (hash) {
-        const targetChapter = document.querySelector(hash);
-        if (targetChapter) {
-            const arrow = targetChapter.querySelector('.arrow');
-            const content = targetChapter.querySelector('.content');
-            arrow.classList.add('collapsed');
-            content.style.display = 'block';
-        }
-    }
-</script>
