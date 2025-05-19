@@ -7,7 +7,9 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import com.drmiaji.webviewtemplate.R
 import com.drmiaji.webviewtemplate.activity.BaseActivity
 
@@ -27,6 +29,12 @@ class WebViewActivity : BaseActivity() {
 
         // Set custom font to the title
         setCustomFontToTitle(toolbar)
+        val navIconColor = ContextCompat.getColor(this, R.color.nav_icon_color)
+        toolbar.navigationIcon?.let { drawable ->
+            val wrapped = DrawableCompat.wrap(drawable).mutate()
+            DrawableCompat.setTint(wrapped, navIconColor)
+            toolbar.navigationIcon = wrapped
+        }
 
         val webView = findViewById<WebView>(R.id.webview)
         webView.webViewClient = WebViewClient()

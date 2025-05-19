@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,20 +27,19 @@ class ChapterListActivity : BaseActivity() {
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-// Add this line to hide the default title
+        // Add this line to hide the default title
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-// Set custom title directly to the embedded TextView
+        // Set custom title directly to the embedded TextView
         titleTextView.text = getString(R.string.app_name)
 
-// Optional: Tint the back arrow (navigation icon)
+        // Optional: Tint the back arrow (navigation icon)
         val navIconColor = ContextCompat.getColor(this, R.color.nav_icon_color)
         toolbar.navigationIcon?.let { originalDrawable ->
             val wrappedDrawable = DrawableCompat.wrap(originalDrawable).mutate()
             DrawableCompat.setTint(wrappedDrawable, navIconColor)
             toolbar.navigationIcon = wrappedDrawable
         }
-
 
         val recyclerView = findViewById<RecyclerView>(R.id.chapter_recycler)
         recyclerView.layoutManager = LinearLayoutManager(this)

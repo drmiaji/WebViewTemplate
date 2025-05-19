@@ -70,6 +70,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.drmiaji.webviewtemplate.activity.About
 import com.drmiaji.webviewtemplate.activity.SettingsActivity
 import com.drmiaji.webviewtemplate.ui.ChapterListActivity
 import com.drmiaji.webviewtemplate.ui.theme.MyAppTheme
@@ -114,7 +115,7 @@ fun MainScreen(
     val menuItems = listOf(
         DrawerItem("হোম", "সূচীপত্র: বিষয়বস্তু দেখুন", Icons.Default.Home, ChapterListActivity::class.java),
         DrawerItem("সেটিংস", "এপ নিয়ন্ত্রণ করুন", Icons.Default.Settings, SettingsActivity::class.java),
-        DrawerItem("এবাউট", "আমাদের সম্পর্কে", Icons.Default.Person, ChapterListActivity::class.java)
+        DrawerItem("এবাউট", "আমাদের সম্পর্কে", Icons.Default.Person, About::class.java)
     )
 
     ModalNavigationDrawer(
