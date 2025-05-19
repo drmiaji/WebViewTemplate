@@ -6,8 +6,8 @@
     <title>Arabic Pronunciation Guide</title>
 </head>
 <body>
-<h1>আরবি উচ্চারণ গাইড</h1>
-
+<h2>প্রথম অধ্যায়ঃ </h2>
+<h3>দ্বিতীয় পাঠঃ মাখরাজ অনুযায়ী হরফের চার্ট</h3>
 <div class="toc">
     <h2>সূচিপত্র</h2>
     <ul>
@@ -132,45 +132,6 @@
     </blockquote>
 </section>
 
-<button id="themeToggle">Toggle Dark Mode</button>
 <button id="goTopBtn" title="Go to top">↑</button>
-
-<script>
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('themeToggle');
-    const htmlElement = document.documentElement;
-
-    // Check for saved theme preference or default to light
-    if (localStorage.getItem('theme') === 'dark') {
-        htmlElement.classList.add('dark');
-    }
-
-    themeToggle.addEventListener('click', () => {
-        htmlElement.classList.toggle('dark');
-
-        // Save preference
-        if (htmlElement.classList.contains('dark')) {
-            localStorage.setItem('theme', 'dark');
-        } else {
-            localStorage.setItem('theme', 'light');
-        }
-    });
-
-    // Go to top button functionality
-    const goTopBtn = document.getElementById('goTopBtn');
-
-    window.onscroll = function() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            goTopBtn.style.display = "block";
-        } else {
-            goTopBtn.style.display = "none";
-        }
-    };
-
-    goTopBtn.addEventListener('click', () => {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    });
-</script>
 </body>
 </html>
