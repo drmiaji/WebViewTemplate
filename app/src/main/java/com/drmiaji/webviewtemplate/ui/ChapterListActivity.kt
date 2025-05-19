@@ -22,10 +22,13 @@ import com.drmiaji.webviewtemplate.viewmodel.ChapterViewModel
 import com.google.android.material.appbar.MaterialToolbar
 import androidx.core.view.size
 import androidx.core.view.get
+import com.drmiaji.webviewtemplate.models.ChapterItem
 
 
 class ChapterListActivity : BaseActivity() {
     private val viewModel: ChapterViewModel by viewModels()
+    private lateinit var adapter: ChapterAdapter
+    private var allChapters: List<ChapterItem> = emptyList()
 
     override fun getLayoutResource() = R.layout.activity_chapter_list
 
@@ -54,17 +57,31 @@ class ChapterListActivity : BaseActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         viewModel.chapters.observe(this) { list ->
-            recyclerView.adapter = ChapterAdapter(list) { chapter ->
+            allChapters = list
+            adapter = ChapterAdapter(list) { chapter ->
                 val intent = Intent(this, WebViewActivity::class.java)
                 intent.putExtra("fileName", chapter.file)
                 intent.putExtra("title", chapter.title)
                 startActivity(intent)
             }
+            recyclerView.adapter = adapter
         }
+    }
+
+    private fun filterChapters(query: String) {
+        val filtered = if (query.isBlank()) {
+            allChapters
+        } else {
+            allChapters.filter {
+                it.title.contains(query, ignoreCase = true)
+            }
+        }
+        adapter.updateData(filtered)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.action_menu, menu)
+
         val iconColor = ContextCompat.getColor(this, R.color.toolbar_icon_color)
         for (i in 0 until menu.size) {
             val menuItem = menu[i]
@@ -72,6 +89,22 @@ class ChapterListActivity : BaseActivity() {
                 DrawableCompat.setTint(DrawableCompat.wrap(icon), iconColor)
             }
         }
+
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as? androidx.appcompat.widget.SearchView
+        searchView?.queryHint = "Search chapters..."
+
+        searchView?.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterChapters(newText.orEmpty())
+                return true
+            }
+        })
+
         return true
     }
 

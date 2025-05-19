@@ -18,14 +18,17 @@
             android:name=".ui.WebViewActivity"
             android:exported="false"
             android:theme="@style/AppTheme"/>
+
         <activity
             android:name=".ui.ChapterListActivity"
             android:exported="false"
             android:theme="@style/AppTheme"/>
+
         <activity
             android:name=".activity.About"
             android:exported="false"
             android:theme="@style/AppTheme"/>
+
         <activity
             android:name=".activity.SettingsActivity"
             android:label="Settings"

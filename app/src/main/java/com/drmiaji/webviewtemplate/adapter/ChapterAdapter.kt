@@ -9,7 +9,7 @@ import com.drmiaji.webviewtemplate.databinding.ItemChapterBinding
 import com.drmiaji.webviewtemplate.models.ChapterItem
 
 class ChapterAdapter(
-    private val items: List<ChapterItem>,
+    private var items: List<ChapterItem>, // ← now it's mutable (var)
     private val onClick: (ChapterItem) -> Unit
 ) : RecyclerView.Adapter<ChapterAdapter.ViewHolder>() {
 
@@ -31,7 +31,7 @@ class ChapterAdapter(
             binding.chapterTitle.text = item.title
 
             val typeface = getSolaimanTypeface(binding.root.context)
-            binding.chapterTitle.setTypeface(typeface, Typeface.BOLD)  // Apply bold style here
+            binding.chapterTitle.setTypeface(typeface, Typeface.BOLD)
 
             binding.root.setOnClickListener { onClick(item) }
         }
@@ -50,5 +50,10 @@ class ChapterAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
+    }
+
+    fun updateData(newList: List<ChapterItem>) {
+        items = newList
+        notifyDataSetChanged()
     }
 }
