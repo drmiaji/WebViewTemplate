@@ -6,11 +6,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.net.toUri
+import androidx.core.view.get
+import androidx.core.view.size
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.drmiaji.webviewtemplate.R
@@ -18,11 +19,9 @@ import com.drmiaji.webviewtemplate.activity.About
 import com.drmiaji.webviewtemplate.activity.BaseActivity
 import com.drmiaji.webviewtemplate.activity.SettingsActivity
 import com.drmiaji.webviewtemplate.adapter.ChapterAdapter
+import com.drmiaji.webviewtemplate.models.ChapterItem
 import com.drmiaji.webviewtemplate.viewmodel.ChapterViewModel
 import com.google.android.material.appbar.MaterialToolbar
-import androidx.core.view.size
-import androidx.core.view.get
-import com.drmiaji.webviewtemplate.models.ChapterItem
 
 
 class ChapterListActivity : BaseActivity() {
@@ -76,7 +75,8 @@ class ChapterListActivity : BaseActivity() {
                 it.title.contains(query, ignoreCase = true)
             }
         }
-        adapter.updateData(filtered)
+        // Pass the query to the adapter for highlighting
+        adapter.updateData(filtered, query)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

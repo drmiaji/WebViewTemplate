@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.drmiaji.webviewtemplate.databinding.ItemChapterBinding
 import com.drmiaji.webviewtemplate.models.ChapterItem
+import com.drmiaji.webviewtemplate.utils.HighlightSpanBuilder
 
 class ChapterAdapter(
     private var items: List<ChapterItem>, // ← now it's mutable (var)
@@ -24,13 +25,29 @@ class ChapterAdapter(
         }
     }
 
+    // Add this property to hold current search query
+    private var searchQuery: String = ""
+    private var highlightSpanBuilder: HighlightSpanBuilder? = null
+
     inner class ViewHolder(private val binding: ItemChapterBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ChapterItem) {
-            binding.chapterTitle.text = item.title
+            val context = binding.root.context
 
-            val typeface = getSolaimanTypeface(binding.root.context)
+            // Initialize highlightSpanBuilder if it's null
+            if (highlightSpanBuilder == null) {
+                highlightSpanBuilder = HighlightSpanBuilder(context)
+            }
+
+            // Highlight the search term if it exists
+            if (searchQuery.isNotEmpty()) {
+                binding.chapterTitle.text = highlightSpanBuilder?.getHighlightedText(item.title, searchQuery)
+            } else {
+                binding.chapterTitle.text = item.title
+            }
+
+            val typeface = getSolaimanTypeface(context)
             binding.chapterTitle.setTypeface(typeface, Typeface.BOLD)
 
             binding.root.setOnClickListener { onClick(item) }
@@ -52,8 +69,9 @@ class ChapterAdapter(
         holder.bind(items[position])
     }
 
-    fun updateData(newList: List<ChapterItem>) {
+    fun updateData(newList: List<ChapterItem>, query: String = "") {
         items = newList
+        searchQuery = query
         notifyDataSetChanged()
     }
 }
