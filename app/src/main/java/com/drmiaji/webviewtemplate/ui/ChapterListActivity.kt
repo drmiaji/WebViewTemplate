@@ -6,7 +6,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,12 +35,13 @@ class ChapterListActivity : BaseActivity() {
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        // Add this line to hide the default title
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        // Set custom title directly to the embedded TextView
         titleTextView.text = getString(R.string.app_name)
+        val typeface = ResourcesCompat.getFont(this, R.font.solaimanlipi)
+        titleTextView.typeface = typeface
 
+      //  setCustomFontToTitle(toolbar)
         // Optional: Tint the back arrow (navigation icon)
         val iconColor = ContextCompat.getColor(this, R.color.toolbar_icon_color)
         toolbar.navigationIcon?.let { drawable ->

@@ -37,9 +37,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorIcon">#CCCCCC</color>
     <color name="nav_icon_color">#FFFFFF</color> <!-- white -->
-    <color name="chapter_text_color">#003366</color> <!-- dark blue -->
-    <color name="chapter_bg_color">#FFFFFF</color> <!-- white -->
     <color name="itemBackground">#FFFFFF</color>
     <color name="itemTextColor">#212121</color>
     <color name="toolbar_icon_color">#90caf9</color>
+
+    <color name="chapter_bg_color">#f5f7fa</color> <!-- very light blue/gray, not pure white -->
+    <color name="chapter_text_color">#222831</color> <!-- dark gray, not pure black -->
+    <color name="divider_color">#b0bec5</color> <!-- muted gray-blue for dividers -->
 </resources>

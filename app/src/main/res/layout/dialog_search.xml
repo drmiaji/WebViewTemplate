@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:hint="@string/enter_search_text"
+        android:imeOptions="actionSearch"
         android:inputType="text"
-        android:maxLines="1"
-        android:imeOptions="actionSearch" />
+        android:maxLines="1" />
 
 </LinearLayout>
