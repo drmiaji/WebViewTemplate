@@ -1,7 +1,9 @@
 package com.drmiaji.webviewtemplate.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -10,8 +12,11 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.net.toUri
 import com.drmiaji.webviewtemplate.R
+import com.drmiaji.webviewtemplate.activity.About
 import com.drmiaji.webviewtemplate.activity.BaseActivity
+import com.drmiaji.webviewtemplate.activity.SettingsActivity
 import com.drmiaji.webviewtemplate.utils.ThemeUtils
 
 class WebViewActivity : BaseActivity() {
@@ -30,10 +35,10 @@ class WebViewActivity : BaseActivity() {
 
         // Set custom font to the title
         setCustomFontToTitle(toolbar)
-        val navIconColor = ContextCompat.getColor(this, R.color.nav_icon_color)
+        val iconColor = ContextCompat.getColor(this, R.color.toolbar_icon_color)
         toolbar.navigationIcon?.let { drawable ->
             val wrapped = DrawableCompat.wrap(drawable).mutate()
-            DrawableCompat.setTint(wrapped, navIconColor)
+            DrawableCompat.setTint(wrapped, iconColor)
             toolbar.navigationIcon = wrapped
         }
 
@@ -107,13 +112,39 @@ class WebViewActivity : BaseActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.action_menu, menu)
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
+        val itemId = item.itemId
+        when (itemId) {
             android.R.id.home -> {
                 onBackPressedDispatcher.onBackPressed()
                 true
             }
-            else -> super.onOptionsItemSelected(item)
+            R.id.share -> {
+                val myIntent = Intent(Intent.ACTION_SEND)
+                myIntent.setType("text/plain")
+                val shareSub: String? = getString(R.string.share_subject)
+                val shareBody: String? = getString(R.string.share_message)
+                myIntent.putExtra(Intent.EXTRA_TEXT, shareSub)
+                myIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                startActivity(Intent.createChooser(myIntent, "Share using!"))
+            }
+            R.id.more_apps -> {
+                val moreApp = Intent(Intent.ACTION_VIEW)
+                moreApp.setData("https://play.google.com/store/apps/details?id=com.drmiaji.tajweed".toUri())
+                startActivity(moreApp)
+            }
+            R.id.action_about_us -> {
+                startActivity(Intent(this, About::class.java))
+            }
+            R.id.settings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
+            }
         }
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -4,7 +4,7 @@
     <style name="CustomToolbarStyle" parent="Widget.Material3.Toolbar">
         <item name="titleTextAppearance">@style/CustomToolbarTitleTextAppearance</item>
         <item name="android:elevation">4dp</item>
-        <item name="materialThemeOverlay">@style/ThemeOverlay.Toolbar.Primary</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.MaterialComponents.Toolbar.Primary</item>
     </style>
 
     <style name="ThemeOverlay.Toolbar.Primary" parent="">

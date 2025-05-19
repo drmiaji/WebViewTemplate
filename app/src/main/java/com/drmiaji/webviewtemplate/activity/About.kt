@@ -72,7 +72,7 @@ class About : AppCompatActivity() {
                 moreApp.setData("https://play.google.com/store/apps/details?id=com.drmiaji.tajweed".toUri())
                 startActivity(moreApp)
             }
-            R.id.action_content -> {
+            R.id.action_about_us -> {
                 startActivity(Intent(this, About::class.java))
             }
             R.id.settings -> {
