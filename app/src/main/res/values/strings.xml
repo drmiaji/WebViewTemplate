@@ -19,5 +19,15 @@
     <string name="about_us2">রচনাঃ আলিমা আরিফা বিল্লাহ\n\nপ্রোগ্রামিংঃ\nডক্টর আব্দুল বাতেন মিয়াজী\n\nইসলামী বিষয়াদি সম্পর্কে জানতে এবং অনলাইনে গ্রন্থাগার থেকে গুরুত্বপূর্ণ কিতাব ডাউনলোড করতে নিচের লিংকে ভিজিট করুন।</string>
     <string name="settings">Settings</string>
     <string name="search">Search</string>
-
+    <string name="dr_abdul_baten_miaji">Dr Abdul Baten Miaji</string>
+    <string name="email">bmiaji@gmail.com</string>
+    <string name="be_connected">Be Connected</string>
+    <string name="watch_islamic_video">জনপ্রিয় ইসলামিক ইউটিউব চ্যানেলসমূহ</string>
+    <string name="gausul_azam">মুফতি বখতিয়ার উদ্দিন আল কাদেরী</string>
+    <string name="ajmeer">আজমীর রেকর্ডিংঃ বাংলা ওয়াযের সম্ভার</string>
+    <string name="naat">ইসলামী হামদ ও না\'ত</string>
+    <string name="islamic_websites">Islamic Websites</string>
+    <string name="bokhtiyar">মুফতি মুহাম্মদ বখতিয়ার উদ্দিন</string>
+    <string name="dr_allama_tahirul_qadri">Dr Allama Tahirul Qadri</string>
+    <string name="minhaz_ul_quran">Minhaz ul Quran</string>
 </resources>

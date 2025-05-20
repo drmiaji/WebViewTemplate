@@ -9,6 +9,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -21,9 +22,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
@@ -59,8 +62,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -69,6 +74,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -142,7 +148,7 @@ fun MainScreen(
             {
                 MyLogo(
                     modifier = Modifier
-                        .padding(horizontal = 20.dp, vertical = 24.dp)
+                        .padding(horizontal = 16.dp, vertical = 24.dp)
                 )
 
                 HorizontalDivider()
@@ -253,42 +259,104 @@ data class DrawerItem(
 
 @Composable
 fun MyLogo(modifier: Modifier = Modifier) {
-    val colors = MaterialTheme.colorScheme
+    val colorScheme = MaterialTheme.colorScheme
+
     Card(
-        modifier = modifier.fillMaxWidth(),
-        shape = CardDefaults.outlinedShape,
-        colors = CardDefaults.cardColors(containerColor = colors.primary),  // Use primary or any appropriate color
-        border = CardDefaults.outlinedCardBorder(),
-        elevation = CardDefaults.outlinedCardElevation()
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 4.dp, vertical = 8.dp),
+        shape = RoundedCornerShape(12.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = colorScheme.primary.copy(alpha = 0.95f)
+        ),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 6.dp
+        )
     ) {
-        Row(
-            modifier = Modifier.padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(
+                    brush = Brush.linearGradient(
+                        colors = listOf(
+                            colorScheme.primary,
+                            colorScheme.primary.copy(alpha = 0.8f)
+                        ),
+                        start = Offset(0f, 0f),
+                        end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
+                    )
+                )
         ) {
-            Image(
-                painter = painterResource(R.drawable.icon),
-                contentDescription = null,
-                modifier = Modifier.size(40.dp),
-                contentScale = ContentScale.Inside
-            )
-            Spacer(Modifier.width(8.dp))
-            val colors = MaterialTheme.colorScheme
-            Column {
-                Text(
-                    text = stringResource(id = R.string.app_name),
-                    style = TextStyle(
-                        fontSize = 18.sp,
-                        fontFamily = FontFamily(Font(R.font.solaimanlipi))
-                    ),
-                    color = colors.background // instead of Color.LightGray
+            // Decorative circles in background (subtle branding element)
+            Canvas(modifier = Modifier.matchParentSize()) {
+                val circleColor = colorScheme.onPrimary.copy(alpha = 0.07f)
+                drawCircle(
+                    color = circleColor,
+                    radius = size.width * 0.2f,
+                    center = Offset(size.width * 0.85f, size.height * 0.2f)
                 )
-                Text(
-                    text = "ডক্টর আব্দুল বাতেন মিয়াজী",
-                    style = MaterialTheme.typography.titleMedium.copy(
-                        fontFamily = FontFamily(Font(R.font.solaimanlipi))
-                    ),
-                    color = colors.background
+                drawCircle(
+                    color = circleColor,
+                    radius = size.width * 0.1f,
+                    center = Offset(size.width * 0.15f, size.height * 0.8f)
                 )
+            }
+
+            Row(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                // App icon with border and shadow
+                Box(
+                    modifier = Modifier
+                        .size(56.dp)
+                        .shadow(4.dp, CircleShape)
+                        .background(colorScheme.surface, CircleShape)
+                        .padding(4.dp)
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.icon),
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Fit
+                    )
+                }
+
+                Spacer(Modifier.width(16.dp))
+
+                Column {
+                    // App name with slightly enhanced styling
+                    Text(
+                        text = stringResource(id = R.string.app_name),
+                        style = TextStyle(
+                            fontSize = 22.sp,
+                            fontFamily = FontFamily(Font(R.font.solaimanlipi)),
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = 0.3.sp,
+                            shadow = Shadow(
+                                color = Color.Black.copy(alpha = 0.2f),
+                                offset = Offset(1f, 1f),
+                                blurRadius = 2f
+                            )
+                        ),
+                        color = colorScheme.onPrimary
+                    )
+
+                    Spacer(Modifier.height(4.dp))
+
+                    // Author name with slightly different styling
+                    Text(
+                        text = "ডক্টর আব্দুল বাতেন মিয়াজী",
+                        style = TextStyle(
+                            fontSize = 16.sp,
+                            fontFamily = FontFamily(Font(R.font.solaimanlipi)),
+                            letterSpacing = 0.2.sp
+                        ),
+                        color = colorScheme.onPrimary.copy(alpha = 0.9f)
+                    )
+                }
             }
         }
     }
@@ -316,7 +384,7 @@ fun DrawerCardItem(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 12.dp, vertical = 6.dp)
+            .padding(horizontal = 12.dp, vertical = 2.dp)
             .clickable(onClick = onClick),
         colors = CardDefaults.cardColors(containerColor = backgroundColor),
         border = BorderStroke(1.dp, borderColor),
@@ -326,7 +394,7 @@ fun DrawerCardItem(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 12.dp),
+                .padding(horizontal = 16.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -337,7 +405,7 @@ fun DrawerCardItem(
                     tint = iconTint,
                     modifier = Modifier.size(28.dp)
                 )
-                Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.width(10.dp))
                 Column {
                     Text(
                         text = item.title,
