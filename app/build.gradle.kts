@@ -5,14 +5,14 @@ plugins {
 }
 
 android {
-    namespace = "com.drmiaji.webviewtemplate"
+    namespace = "com.drmiaji.tajweed"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.drmiaji.webviewtemplate"
+        applicationId = "com.drmiaji.tajweed"
         minSdk = 24
         targetSdk = 35
-        versionCode = 1
+        versionCode = 10
         versionName = "1.0"
     }
 

@@ -1,7 +1,8 @@
-package com.drmiaji.webviewtemplate
+package com.drmiaji.tajweed
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -30,6 +31,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Public
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -70,12 +72,13 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.drmiaji.webviewtemplate.activity.About
-import com.drmiaji.webviewtemplate.activity.SettingsActivity
-import com.drmiaji.webviewtemplate.ui.ChapterListActivity
-import com.drmiaji.webviewtemplate.ui.theme.MyAppTheme
-import com.drmiaji.webviewtemplate.ui.theme.topBarColors
+import com.drmiaji.tajweed.activity.About
+import com.drmiaji.tajweed.activity.SettingsActivity
+import com.drmiaji.tajweed.ui.ChapterListActivity
+import com.drmiaji.tajweed.ui.theme.MyAppTheme
+import com.drmiaji.tajweed.ui.theme.topBarColors
 import kotlinx.coroutines.launch
+import androidx.core.net.toUri
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -113,9 +116,10 @@ fun MainScreen(
     val context = LocalContext.current
 
     val menuItems = listOf(
-        DrawerItem("হোম", "সূচীপত্র: বিষয়বস্তু দেখুন", Icons.Default.Home, ChapterListActivity::class.java),
-        DrawerItem("সেটিংস", "এপ নিয়ন্ত্রণ করুন", Icons.Default.Settings, SettingsActivity::class.java),
-        DrawerItem("এবাউট", "আমাদের সম্পর্কে", Icons.Default.Person, About::class.java)
+        DrawerItem("হোম", "সূচীপত্র: বিষয়বস্তু দেখুন", Icons.Default.Home, activityClass = ChapterListActivity::class.java),
+        DrawerItem("সেটিংস", "এপ নিয়ন্ত্রণ করুন", Icons.Default.Settings, activityClass = SettingsActivity::class.java),
+        DrawerItem("এবাউট", "আমাদের সম্পর্কে", Icons.Default.Person, activityClass = About::class.java),
+        DrawerItem("আমাদের ওয়েবসাইট", "ওয়েবসাইটে যান", Icons.Default.Public, linkUrl = "https://www.drmiaji.com")
     )
 
     ModalNavigationDrawer(
@@ -150,7 +154,15 @@ fun MainScreen(
                         selected = item == selectedItem,
                         onClick = {
                             selectedItem = item
-                            context.startActivity(Intent(context, item.activityClass))
+                            when {
+                                item.activityClass != null -> {
+                                    context.startActivity(Intent(context, item.activityClass))
+                                }
+                                item.linkUrl != null -> {
+                                    val intent = Intent(Intent.ACTION_VIEW, item.linkUrl.toUri())
+                                    context.startActivity(intent)
+                                }
+                            }
                             scope.launch { drawerState.close() }
                         }
                     )
@@ -230,7 +242,8 @@ data class DrawerItem(
     val title: String,
     val subtitle: String = "",
     val icon: ImageVector,
-    val activityClass: Class<out Activity>
+    val activityClass: Class<out Activity>? = null,
+    val linkUrl: String? = null
 )
 
 @Composable

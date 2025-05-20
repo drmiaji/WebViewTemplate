@@ -1,10 +1,10 @@
-package com.drmiaji.webviewtemplate.viewmodel
+package com.drmiaji.tajweed.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.drmiaji.webviewtemplate.models.ChapterItem
+import com.drmiaji.tajweed.models.ChapterItem
 import org.json.JSONArray
 import java.io.BufferedReader
 

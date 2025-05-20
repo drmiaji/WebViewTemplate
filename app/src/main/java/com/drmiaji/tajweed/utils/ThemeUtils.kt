@@ -1,11 +1,11 @@
-package com.drmiaji.webviewtemplate.utils
+package com.drmiaji.tajweed.utils
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.edit
-import com.drmiaji.webviewtemplate.MainActivity
+import com.drmiaji.tajweed.MainActivity
 
 object ThemeUtils {
     private const val PREF_NAME = "theme_pref"

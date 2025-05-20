@@ -1,4 +1,4 @@
-package com.drmiaji.webviewtemplate.activity
+package com.drmiaji.tajweed.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.net.toUri
-import com.drmiaji.webviewtemplate.R
+import com.drmiaji.tajweed.R
 import com.google.android.material.appbar.MaterialToolbar
 
 class About : AppCompatActivity() {

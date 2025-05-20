@@ -1,4 +1,4 @@
-package com.drmiaji.webviewtemplate.ui
+package com.drmiaji.tajweed.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -13,11 +13,11 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.net.toUri
-import com.drmiaji.webviewtemplate.R
-import com.drmiaji.webviewtemplate.activity.About
-import com.drmiaji.webviewtemplate.activity.BaseActivity
-import com.drmiaji.webviewtemplate.activity.SettingsActivity
-import com.drmiaji.webviewtemplate.utils.ThemeUtils
+import com.drmiaji.tajweed.R
+import com.drmiaji.tajweed.activity.About
+import com.drmiaji.tajweed.activity.BaseActivity
+import com.drmiaji.tajweed.activity.SettingsActivity
+import com.drmiaji.tajweed.utils.ThemeUtils
 
 class WebViewActivity : BaseActivity() {
 
@@ -114,6 +114,7 @@ class WebViewActivity : BaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.action_menu, menu)
+        menu.findItem(R.id.action_search)?.isVisible = false
         return true
     }
 

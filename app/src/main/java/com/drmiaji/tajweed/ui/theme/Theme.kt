@@ -1,4 +1,4 @@
-package com.drmiaji.webviewtemplate.ui.theme
+package com.drmiaji.tajweed.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

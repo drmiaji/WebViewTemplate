@@ -1,4 +1,4 @@
-package com.drmiaji.webviewtemplate.models
+package com.drmiaji.tajweed.models
 
 data class ChapterItem(
     val title: String,

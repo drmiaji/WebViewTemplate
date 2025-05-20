@@ -1,4 +1,4 @@
-package com.drmiaji.webviewtemplate.activity
+package com.drmiaji.tajweed.activity
 
 import android.os.Bundle
 import android.view.View
@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import com.drmiaji.webviewtemplate.R
+import com.drmiaji.tajweed.R
 import com.google.android.material.snackbar.Snackbar
 
 @Suppress("DEPRECATION")

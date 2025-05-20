@@ -1,7 +1,7 @@
-package com.drmiaji.webviewtemplate
+package com.drmiaji.tajweed
 
 import android.app.Application
-import com.drmiaji.webviewtemplate.utils.ThemeUtils
+import com.drmiaji.tajweed.utils.ThemeUtils
 
 class MyApplication : Application() {
     override fun onCreate() {

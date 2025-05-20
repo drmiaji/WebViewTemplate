@@ -1,4 +1,4 @@
-package com.drmiaji.webviewtemplate.ui
+package com.drmiaji.tajweed.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,13 +14,13 @@ import androidx.core.view.get
 import androidx.core.view.size
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.drmiaji.webviewtemplate.R
-import com.drmiaji.webviewtemplate.activity.About
-import com.drmiaji.webviewtemplate.activity.BaseActivity
-import com.drmiaji.webviewtemplate.activity.SettingsActivity
-import com.drmiaji.webviewtemplate.adapter.ChapterAdapter
-import com.drmiaji.webviewtemplate.models.ChapterItem
-import com.drmiaji.webviewtemplate.viewmodel.ChapterViewModel
+import com.drmiaji.tajweed.R
+import com.drmiaji.tajweed.activity.About
+import com.drmiaji.tajweed.activity.BaseActivity
+import com.drmiaji.tajweed.activity.SettingsActivity
+import com.drmiaji.tajweed.adapter.ChapterAdapter
+import com.drmiaji.tajweed.models.ChapterItem
+import com.drmiaji.tajweed.viewmodel.ChapterViewModel
 import com.google.android.material.appbar.MaterialToolbar
 
 
