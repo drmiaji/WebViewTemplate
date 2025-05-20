@@ -122,11 +122,35 @@ fun MainScreen(
     var showMenu by remember { mutableStateOf(false) }
     val context = LocalContext.current
 
-    val menuItems = listOf(
-        DrawerItem("হোম", "সূচীপত্র: বিষয়বস্তু দেখুন", Icons.Default.Home, activityClass = ChapterListActivity::class.java),
-        DrawerItem("সেটিংস", "এপ নিয়ন্ত্রণ করুন", Icons.Default.Settings, activityClass = SettingsActivity::class.java),
-        DrawerItem("এবাউট", "আমাদের সম্পর্কে", Icons.Default.Person, activityClass = About::class.java),
-        DrawerItem("আমাদের ওয়েবসাইট", "ওয়েবসাইটে যান", Icons.Default.Public, linkUrl = "https://www.drmiaji.com")
+    val groupedMenuItems = listOf(
+        DrawerMenuGroup(
+            groupTitle = "ইউটিউব চ্যানেলসমূহ",
+            items = listOf(
+                DrawerItem("তাহিরুল কাদেরী", "YouTube", Icons.Default.Public, linkUrl = "https://youtube.com/tahirulqadri"),
+                DrawerItem("গাউসুল আজম", "YouTube", Icons.Default.Public, linkUrl = "https://youtube.com/gausulazam"),
+                DrawerItem("আজমীর শরীফ", "YouTube", Icons.Default.Public, linkUrl = "https://youtube.com/ajmeer"),
+            )
+        ),
+        DrawerMenuGroup(
+            groupTitle = "এবাউট এপ",
+            items = listOf(
+                DrawerItem("সেটিংস", "এপ নিয়ন্ত্রণ করুন", Icons.Default.Settings, activityClass = SettingsActivity::class.java),
+                DrawerItem("এবাউট", "আমাদের সম্পর্কে", Icons.Default.Person, activityClass = About::class.java),
+            )
+        ),
+        DrawerMenuGroup(
+            groupTitle = "ফেসবুক",
+            items = listOf(
+                DrawerItem("ড. মিয়াজী", "Facebook", Icons.Default.Public, linkUrl = "https://www.facebook.com/batenmiaji2")
+            )
+        ),
+        DrawerMenuGroup(
+            groupTitle = "ওয়েবসাইটসমূহ",
+            items = listOf(
+                DrawerItem("Minhaj-ul-Quran", "Official Site", Icons.Default.Public, linkUrl = "https://www.minhaj.org"),
+                DrawerItem("Dr Miaji", "Official Site", Icons.Default.Public, linkUrl = "https://www.drmiaji.com")
+            )
+        )
     )
 
     ModalNavigationDrawer(
@@ -155,28 +179,37 @@ fun MainScreen(
 
                 var selectedItem by remember { mutableStateOf<DrawerItem?>(null) }
 
-                menuItems.forEach { item ->
-                    DrawerCardItem(
-                        item = item,
-                        selected = item == selectedItem,
-                        onClick = {
-                            selectedItem = item
-                            when {
-                                item.activityClass != null -> {
-                                    context.startActivity(Intent(context, item.activityClass))
-                                }
-                                item.linkUrl != null -> {
-                                    // Reuse existing WebViewActivity for external links
-                                    val intent = Intent(context, WebViewActivity::class.java).apply {
-                                        putExtra("title", item.title)
-                                        putExtra("url", item.linkUrl) // New parameter for external URL
-                                    }
-                                    context.startActivity(intent)
-                                }
-                            }
-                            scope.launch { drawerState.close() }
-                        }
+                groupedMenuItems.forEach { group ->
+                    Text(
+                        text = group.groupTitle,
+                        modifier = Modifier.padding(start = 20.dp, top = 12.dp, bottom = 4.dp),
+                        style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold)
                     )
+
+                    group.items.forEach { item ->
+                        DrawerCardItem(
+                            item = item,
+                            selected = item == selectedItem,
+                            onClick = {
+                                selectedItem = item
+                                when {
+                                    item.activityClass != null -> {
+                                        context.startActivity(Intent(context, item.activityClass))
+                                    }
+                                    item.linkUrl != null -> {
+                                        val intent = Intent(context, WebViewActivity::class.java).apply {
+                                            putExtra("title", item.title)
+                                            putExtra("url", item.linkUrl)
+                                        }
+                                        context.startActivity(intent)
+                                    }
+                                }
+                                scope.launch { drawerState.close() }
+                            }
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(8.dp)) // space between groups
                 }
             }
         }
@@ -247,6 +280,11 @@ fun MainScreen(
         }
     }
 }
+
+data class DrawerMenuGroup(
+    val groupTitle: String,
+    val items: List<DrawerItem>
+)
 
 // Data class for drawer items
 data class DrawerItem(
