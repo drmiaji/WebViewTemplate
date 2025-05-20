@@ -60,14 +60,6 @@ h1, h2, h3, h4, h5, h6 {
     direction: ltr;
     text-align: left;
 }
-h1 {
-    font-size: 22px;
-    text-align: right;
-}
-h3 {
-    font-size: 18px;
-    text-align: right;
-}
 
 /* ========== TEXT ========== */
 p {
