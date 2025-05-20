@@ -79,6 +79,7 @@ import com.drmiaji.tajweed.ui.theme.MyAppTheme
 import com.drmiaji.tajweed.ui.theme.topBarColors
 import kotlinx.coroutines.launch
 import androidx.core.net.toUri
+import com.drmiaji.tajweed.ui.WebViewActivity
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -159,7 +160,11 @@ fun MainScreen(
                                     context.startActivity(Intent(context, item.activityClass))
                                 }
                                 item.linkUrl != null -> {
-                                    val intent = Intent(Intent.ACTION_VIEW, item.linkUrl.toUri())
+                                    // Reuse existing WebViewActivity for external links
+                                    val intent = Intent(context, WebViewActivity::class.java).apply {
+                                        putExtra("title", item.title)
+                                        putExtra("url", item.linkUrl) // New parameter for external URL
+                                    }
                                     context.startActivity(intent)
                                 }
                             }

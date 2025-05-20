@@ -2,11 +2,14 @@ package com.drmiaji.tajweed.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -43,11 +46,26 @@ class WebViewActivity : BaseActivity() {
         }
 
         val webView = findViewById<WebView>(R.id.webview)
-        webView.webViewClient = WebViewClient()
-        webView.settings.javaScriptEnabled = true
+        // Add progress indicator
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+
+        webView.webViewClient = object : WebViewClient() {
+            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                super.onPageStarted(view, url, favicon)
+                progressBar?.visibility = View.VISIBLE
+            }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                progressBar?.visibility = View.GONE
+            }
+        }
+//        webView.webViewClient = WebViewClient()
+//        webView.settings.javaScriptEnabled = true
 
         // Enable zoom functionality
         webView.settings.apply {
+            javaScriptEnabled = true
             setSupportZoom(true)
             builtInZoomControls = true
             displayZoomControls = false // Hide the default zoom controls
@@ -58,38 +76,61 @@ class WebViewActivity : BaseActivity() {
             // textZoom = 120 // Set text zoom percentage (100 is normal)
         }
 
-        val fileName = intent.getStringExtra("fileName") ?: "chapter1.html"
+        // Check if we're loading an external URL or internal file
+        val externalUrl = intent.getStringExtra("url")
 
-        // Determine the current theme mode
-        val themeMode = ThemeUtils.getCurrentThemeMode(this)
-        val themeClass = when (themeMode) {
-            ThemeUtils.THEME_DARK -> "dark"
-            ThemeUtils.THEME_LIGHT -> "light"
-            else -> {
-                // Fallback to system
-                val nightModeFlags = resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK
-                if (nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES) "dark" else "light"
+        if (externalUrl != null) {
+            // Load external URL
+            webView.loadUrl(externalUrl)
+        } else {
+            // Existing code for loading internal HTML files
+            val fileName = intent.getStringExtra("fileName") ?: "chapter1.html"
+            val themeMode = ThemeUtils.getCurrentThemeMode(this)
+            val themeClass = when (themeMode) {
+                ThemeUtils.THEME_DARK -> "dark"
+                ThemeUtils.THEME_LIGHT -> "light"
+                else -> {
+                    val nightModeFlags = resources.configuration.uiMode and
+                            android.content.res.Configuration.UI_MODE_NIGHT_MASK
+                    if (nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES)
+                        "dark" else "light"
+                }
             }
+
+//        val fileName = intent.getStringExtra("fileName") ?: "chapter1.html"
+//
+//        // Determine the current theme mode
+//        val themeMode = ThemeUtils.getCurrentThemeMode(this)
+//        val themeClass = when (themeMode) {
+//            ThemeUtils.THEME_DARK -> "dark"
+//            ThemeUtils.THEME_LIGHT -> "light"
+//            else -> {
+//                // Fallback to system
+//                val nightModeFlags = resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK
+//                if (nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES) "dark" else "light"
+//            }
+//        }
+
+            // Load base.html template
+            val baseHtml = assets.open("contents/base.html").bufferedReader().use { it.readText() }
+            // Load content HTML
+            val contentHtml =
+                assets.open("contents/topics/$fileName").bufferedReader().use { it.readText() }
+
+            // Inject content and theme into template
+            val fullHtml = baseHtml
+                .replace("{{CONTENT}}", contentHtml)
+                .replace("{{THEME}}", themeClass)
+                .replace("{{STYLE}}", "")
+
+            webView.loadDataWithBaseURL(
+                "file:///android_asset/contents/",
+                fullHtml,
+                "text/html",
+                "utf-8",
+                null
+            )
         }
-
-// Load base.html template
-        val baseHtml = assets.open("contents/base.html").bufferedReader().use { it.readText() }
-// Load content HTML
-        val contentHtml = assets.open("contents/topics/$fileName").bufferedReader().use { it.readText() }
-
-// Inject content and theme into template
-        val fullHtml = baseHtml
-            .replace("{{CONTENT}}", contentHtml)
-            .replace("{{THEME}}", themeClass)
-            .replace("{{STYLE}}", "")
-
-        webView.loadDataWithBaseURL(
-            "file:///android_asset/contents/",
-            fullHtml,
-            "text/html",
-            "utf-8",
-            null
-        )
     }
 
     /**

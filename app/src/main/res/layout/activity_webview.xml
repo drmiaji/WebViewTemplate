@@ -7,6 +7,15 @@
     <!-- Include the reusable toolbar -->
     <include layout="@layout/toolbar" />
 
+    <!-- Add this inside your layout, typically above the WebView -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
     <WebView
         android:id="@+id/webview"
         android:layout_width="match_parent"
