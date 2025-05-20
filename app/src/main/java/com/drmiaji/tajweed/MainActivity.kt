@@ -35,11 +35,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Architecture
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Facebook
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Public
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -88,11 +85,11 @@ import androidx.compose.ui.unit.sp
 import com.drmiaji.tajweed.activity.About
 import com.drmiaji.tajweed.activity.SettingsActivity
 import com.drmiaji.tajweed.ui.ChapterListActivity
+import com.drmiaji.tajweed.ui.WebViewActivity
 import com.drmiaji.tajweed.ui.theme.MyAppTheme
 import com.drmiaji.tajweed.ui.theme.topBarColors
 import kotlinx.coroutines.launch
 import androidx.core.net.toUri
-import com.drmiaji.tajweed.ui.WebViewActivity
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -134,6 +131,7 @@ fun MainScreen(
             groupTitle = "ইউটিউব চ্যানেলসমূহ",
             items = listOf(
                 DrawerItem("ড. মু. তাহিরুল কাদেরী", "YouTube", R.drawable.youtube, linkUrl = "https://youtube.com/tahirulqadri"),
+                DrawerItem("Dr Miaji|Official", "YouTube", R.drawable.youtube, linkUrl = "https://www.youtube.com/@bmiaji"),
                 DrawerItem("গাউসুল আজম", "YouTube", R.drawable.youtube, linkUrl = "https://youtube.com/gausulazam"),
                 DrawerItem("আজমীর শরীফ", "YouTube", R.drawable.youtube, linkUrl = "https://youtube.com/ajmeer"),
             )
@@ -243,7 +241,13 @@ fun MainScreen(
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(text = stringResource(id = R.string.app_name)) },
+                    title = { Text(text = stringResource(id = R.string.app_name),
+                        style = TextStyle(
+                            fontFamily = FontFamily(Font(R.font.solaimanlipi)),
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 20.sp
+                        )
+                        ) },
                     navigationIcon = {
                         IconButton(onClick = { scope.launch { drawerState.open() } }) {
                             Icon(Icons.Default.Menu, contentDescription = "Menu")
@@ -267,6 +271,15 @@ fun MainScreen(
                                     text = { Text("Settings") },
                                     onClick = { context.startActivity(Intent(context,
                                         SettingsActivity::class.java)); showMenu = false }
+                                )
+                                DropdownMenuItem(
+                                    text = { Text("Privacy Policy") },
+                                    onClick = {
+                                        val url = "https://drmiaji.github.io/Tajweed/privacy_policy.html\n"
+                                        val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+                                        context.startActivity(intent)
+                                        showMenu = false
+                                    }
                                 )
                             }
                         }
