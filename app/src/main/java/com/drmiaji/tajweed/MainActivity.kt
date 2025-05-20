@@ -126,10 +126,11 @@ fun MainScreen(
         DrawerMenuGroup(
             groupTitle = "ইউটিউব চ্যানেলসমূহ",
             items = listOf(
-                DrawerItem("তাহিরুল কাদেরী", "YouTube", Icons.Default.Public, linkUrl = "https://youtube.com/tahirulqadri"),
+                DrawerItem("শাইখুল ইসলাম ড. কাদেরী", "YouTube", Icons.Default.Public, linkUrl = "https://youtube.com/tahirulqadri"),
                 DrawerItem("গাউসুল আজম", "YouTube", Icons.Default.Public, linkUrl = "https://youtube.com/gausulazam"),
                 DrawerItem("আজমীর শরীফ", "YouTube", Icons.Default.Public, linkUrl = "https://youtube.com/ajmeer"),
-            )
+                DrawerItem("Dr Miaji Official", "YouTube", Icons.Default.Public, linkUrl = "https://www.youtube.com/@bmiaji")
+                )
         ),
         DrawerMenuGroup(
             groupTitle = "এবাউট এপ",
