@@ -20,21 +20,23 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Architecture
 import androidx.compose.material.icons.filled.ChevronRight
-import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Facebook
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Public
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -65,7 +67,9 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -81,11 +85,11 @@ import androidx.compose.ui.unit.sp
 import com.drmiaji.tajweed.activity.About
 import com.drmiaji.tajweed.activity.SettingsActivity
 import com.drmiaji.tajweed.ui.ChapterListActivity
+import com.drmiaji.tajweed.ui.WebViewActivity
 import com.drmiaji.tajweed.ui.theme.MyAppTheme
 import com.drmiaji.tajweed.ui.theme.topBarColors
 import kotlinx.coroutines.launch
 import androidx.core.net.toUri
-import com.drmiaji.tajweed.ui.WebViewActivity
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -126,30 +130,30 @@ fun MainScreen(
         DrawerMenuGroup(
             groupTitle = "ইউটিউব চ্যানেলসমূহ",
             items = listOf(
-                DrawerItem("শাইখুল ইসলাম ড. কাদেরী", "YouTube", Icons.Default.Public, linkUrl = "https://youtube.com/tahirulqadri"),
-                DrawerItem("গাউসুল আজম", "YouTube", Icons.Default.Public, linkUrl = "https://youtube.com/gausulazam"),
-                DrawerItem("আজমীর শরীফ", "YouTube", Icons.Default.Public, linkUrl = "https://youtube.com/ajmeer"),
-                DrawerItem("Dr Miaji Official", "YouTube", Icons.Default.Public, linkUrl = "https://www.youtube.com/@bmiaji")
-                )
+                DrawerItem("ড. মু. তাহিরুল কাদেরী", "YouTube", R.drawable.youtube, linkUrl = "https://youtube.com/tahirulqadri"),
+                DrawerItem("Dr Miaji|Official", "YouTube", R.drawable.youtube, linkUrl = "https://www.youtube.com/@bmiaji"),
+                DrawerItem("গাউসুল আজম", "YouTube", R.drawable.youtube, linkUrl = "https://youtube.com/gausulazam"),
+                DrawerItem("আজমীর শরীফ", "YouTube", R.drawable.youtube, linkUrl = "https://youtube.com/ajmeer"),
+            )
         ),
         DrawerMenuGroup(
             groupTitle = "এবাউট এপ",
             items = listOf(
                 DrawerItem("সেটিংস", "এপ নিয়ন্ত্রণ করুন", Icons.Default.Settings, activityClass = SettingsActivity::class.java),
-                DrawerItem("এবাউট", "আমাদের সম্পর্কে", Icons.Default.Person, activityClass = About::class.java),
+                DrawerItem("এবাউট", "আমাদের সম্পর্কে", Icons.Default.Architecture, activityClass = About::class.java),
             )
         ),
         DrawerMenuGroup(
             groupTitle = "ফেসবুক",
             items = listOf(
-                DrawerItem("ড. মিয়াজী", "Facebook", Icons.Default.Public, linkUrl = "https://www.facebook.com/batenmiaji2")
+                DrawerItem("ড. মিয়াজী", "Facebook", Icons.Default.Facebook, linkUrl = "https://www.facebook.com/batenmiaji2")
             )
         ),
         DrawerMenuGroup(
             groupTitle = "ওয়েবসাইটসমূহ",
             items = listOf(
-                DrawerItem("Minhaj-ul-Quran", "Official Site", Icons.Default.Public, linkUrl = "https://www.minhaj.org"),
-                DrawerItem("Dr Miaji", "Official Site", Icons.Default.Public, linkUrl = "https://www.drmiaji.com")
+                DrawerItem("Minhaj-ul-Quran", "Official Site", R.drawable.weblink, linkUrl = "https://www.minhaj.org"),
+                DrawerItem("Dr Miaji", "Official Site", R.drawable.weblink, linkUrl = "https://www.drmiaji.com")
             )
         )
     )
@@ -169,48 +173,67 @@ fun MainScreen(
                         )
                     ),
                 drawerContainerColor = Color.Transparent
-            )
-            {
-                MyLogo(
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp, vertical = 24.dp)
-                )
-
-                HorizontalDivider()
-
-                var selectedItem by remember { mutableStateOf<DrawerItem?>(null) }
-
-                groupedMenuItems.forEach { group ->
-                    Text(
-                        text = group.groupTitle,
-                        modifier = Modifier.padding(start = 20.dp, top = 12.dp, bottom = 4.dp),
-                        style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold)
+            ) {
+                Column(
+                    modifier = Modifier.fillMaxHeight()
+                ) {
+                    // Logo and header section (fixed at top)
+                    MyLogo(
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp, vertical = 24.dp)
                     )
 
-                    group.items.forEach { item ->
-                        DrawerCardItem(
-                            item = item,
-                            selected = item == selectedItem,
-                            onClick = {
-                                selectedItem = item
-                                when {
-                                    item.activityClass != null -> {
-                                        context.startActivity(Intent(context, item.activityClass))
-                                    }
-                                    item.linkUrl != null -> {
-                                        val intent = Intent(context, WebViewActivity::class.java).apply {
-                                            putExtra("title", item.title)
-                                            putExtra("url", item.linkUrl)
-                                        }
-                                        context.startActivity(intent)
-                                    }
-                                }
-                                scope.launch { drawerState.close() }
-                            }
-                        )
-                    }
+                    HorizontalDivider()
 
-                    Spacer(modifier = Modifier.height(8.dp)) // space between groups
+                    // State for tracking selected item
+                    var selectedItem by remember { mutableStateOf<DrawerItem?>(null) }
+
+                    // Scrollable content section
+                    LazyColumn(
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxWidth()
+                    ) {
+                        groupedMenuItems.forEach { group ->
+                            item {
+                                Text(
+                                    text = group.groupTitle,
+                                    modifier = Modifier.padding(start = 24.dp, top = 4.dp, bottom = 4.dp),
+                                    style = MaterialTheme.typography.labelLarge.copy(
+                                        fontWeight = FontWeight.Bold,
+                                        fontFamily = FontFamily(Font(R.font.solaimanlipi))
+                                    )
+                                )
+                            }
+
+                            itemsIndexed(group.items) { _, item ->
+                                DrawerCardItem(
+                                    item = item,
+                                    selected = item == selectedItem,
+                                    onClick = {
+                                        selectedItem = item
+                                        when {
+                                            item.activityClass != null -> {
+                                                context.startActivity(Intent(context, item.activityClass))
+                                            }
+                                            item.linkUrl != null -> {
+                                                val intent = Intent(context, WebViewActivity::class.java).apply {
+                                                    putExtra("title", item.title)
+                                                    putExtra("url", item.linkUrl)
+                                                }
+                                                context.startActivity(intent)
+                                            }
+                                        }
+                                        scope.launch { drawerState.close() }
+                                    }
+                                )
+                            }
+
+                            item {
+                                Spacer(modifier = Modifier.height(8.dp)) // space between groups
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -218,7 +241,13 @@ fun MainScreen(
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(text = stringResource(id = R.string.app_name)) },
+                    title = { Text(text = stringResource(id = R.string.app_name),
+                        style = TextStyle(
+                            fontFamily = FontFamily(Font(R.font.solaimanlipi)),
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 20.sp
+                        )
+                        ) },
                     navigationIcon = {
                         IconButton(onClick = { scope.launch { drawerState.open() } }) {
                             Icon(Icons.Default.Menu, contentDescription = "Menu")
@@ -242,6 +271,15 @@ fun MainScreen(
                                     text = { Text("Settings") },
                                     onClick = { context.startActivity(Intent(context,
                                         SettingsActivity::class.java)); showMenu = false }
+                                )
+                                DropdownMenuItem(
+                                    text = { Text("Privacy Policy") },
+                                    onClick = {
+                                        val url = "https://drmiaji.github.io/Tajweed/privacy_policy.html\n"
+                                        val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+                                        context.startActivity(intent)
+                                        showMenu = false
+                                    }
                                 )
                             }
                         }
@@ -291,7 +329,7 @@ data class DrawerMenuGroup(
 data class DrawerItem(
     val title: String,
     val subtitle: String = "",
-    val icon: ImageVector,
+    val icon: Any,
     val activityClass: Class<out Activity>? = null,
     val linkUrl: String? = null
 )
@@ -417,13 +455,14 @@ fun DrawerCardItem(
         label = "bgColor"
     )
 
-// Border and icon tint colors
+    // Border and icon tint colors
     val borderColor = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline
     val iconTint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 12.dp, vertical = 2.dp)
+            .padding(horizontal = 8.dp, vertical = 2.dp)
             .clickable(onClick = onClick),
         colors = CardDefaults.cardColors(containerColor = backgroundColor),
         border = BorderStroke(1.dp, borderColor),
@@ -433,23 +472,47 @@ fun DrawerCardItem(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 8.dp),
+                .padding(horizontal = 16.dp, vertical = 4.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(
-                    imageVector = item.icon,
-                    contentDescription = item.title,
-                    tint = iconTint,
-                    modifier = Modifier.size(28.dp)
-                )
+                // Handle different icon types
+                when (item.icon) {
+                    is ImageVector -> {
+                        Icon(
+                            imageVector = item.icon,
+                            contentDescription = item.title,
+                            tint = iconTint,
+                            modifier = Modifier.size(28.dp)
+                        )
+                    }
+                    is Int -> {
+                        Image(
+                            painter = painterResource(id = item.icon),
+                            contentDescription = item.title,
+                            modifier = Modifier
+                                .size(28.dp)
+                                .clip(CircleShape),
+                            colorFilter = if (selected) ColorFilter.tint(iconTint) else null
+                        )
+                    }
+                    is Painter -> {
+                        Icon(
+                            painter = item.icon,
+                            contentDescription = item.title,
+                            tint = iconTint,
+                            modifier = Modifier.size(28.dp)
+                        )
+                    }
+                }
+
                 Spacer(modifier = Modifier.width(10.dp))
                 Column {
                     Text(
                         text = item.title,
                         style = TextStyle(
-                            fontSize = 18.sp,
+                            fontSize = 16.sp,
                             fontFamily = FontFamily(Font(R.font.solaimanlipi))
                         ),
                         color = MaterialTheme.colorScheme.onSurface
