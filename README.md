@@ -1,3 +1,13 @@
+# 📱 Tajweed WebView Android App
+
+![Language](https://img.shields.io/github/languages/top/drmiaji/Tajweed)
+![Stars](https://img.shields.io/github/stars/drmiaji/Tajweed?style=social)
+![Forks](https://img.shields.io/github/forks/drmiaji/Tajweed?style=social)
+![License](https://img.shields.io/github/license/drmiaji/Tajweed)
+![Last Commit](https://img.shields.io/github/last-commit/drmiaji/Tajweed)
+
+---
+
 ## 📱 Android WebView টেমপ্লেট (বাংলা)
 
 এটি একটি সহজ, হালকা ও ব্যবহারযোগ্য Android টেমপ্লেট যেখানে WebView ব্যবহার করা হয়েছে। আপনি এটি ফর্ক করে আপনার নিজের কনটেন্ট যোগ করতে পারবেন খুব সহজেই।
@@ -93,5 +103,22 @@ This is a lightweight and easy-to-customize Android template using WebView. Idea
 
 ---
 
-Feel free to fork, improve, or contribute.  
-If this project helps you, a ⭐️ would be appreciated!
+## 📸 Screenshots
+
+> Replace these links with actual screenshots stored in your repo under `assets/images/`
+
+| Home Screen | Search | WebView |
+|-------------|--------|---------|
+| ![home](assets/images/home.png) | ![search](assets/images/search.png) | ![webview](assets/images/webview.png) |
+
+---
+
+## 🙏 Contributions & Feedback
+
+Pull requests and suggestions are welcome. If this helps you, please ⭐️ the repo.
+
+---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
