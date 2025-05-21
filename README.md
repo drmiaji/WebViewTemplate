@@ -105,11 +105,9 @@ This is a lightweight and easy-to-customize Android template using WebView. Idea
 
 ## 📸 Screenshots
 
-> Replace these links with actual screenshots stored in your repo under `assets/images/`
-
-| Home Screen | Search | WebView |
+| Home Screen | Search | WebView | Dark Mode | Navigation | Settings |
 |-------------|--------|---------|
-| ![home](assets/images/home.png) | ![search](assets/images/search.png) | ![webview](assets/images/webview.png) |
+| ![home](assets/images/home.png) | ![search](assets/images/search.png) | ![webview](assets/images/webview.png) | ![webview](assets/images/navigation.png) | ![webview](assets/images/dark_mode.png) | ![webview](assets/images/mode.png) |
 
 ---
 
