@@ -44,3 +44,54 @@
 
 🔧 আপনার সুবিধামতো কোড কাস্টোমাইজ করুন।  
 ⭐️ ভালো লাগলে একটি স্টার দিতে ভুলবেন না!
+
+---
+
+---
+
+## 🌐 Android WebView Template (English)
+
+This is a lightweight and easy-to-customize Android template using WebView. Ideal for anyone who wants to display HTML content inside an Android app.
+
+---
+
+### ✅ How to Use
+
+1. **Fork or clone** this repo into Android Studio  
+2. Modify the assets or code as per your need  
+3. Add your own chapters, styles, or JavaScript
+
+---
+
+### 📁 Included Assets
+
+- `assets/contents/topics/` → 10 sample chapters  
+- `assets/contents/index.json` → for indexed navigation  
+- `style.css`, `script.js`, `base.html` → for WebView rendering  
+- **Fonts**:  
+  - `SolaimanLipi.ttf` → Bengali font  
+  - `IndoPak` → Arabic font (Quranic script)
+
+---
+
+### 🛠️ Tech Stack
+
+- 🎯 **Target SDK**: 35  
+- 📦 **Dependencies**: All are up to date
+
+---
+
+### ✨ Features
+
+- 🌐 WebView rendering for static HTML content  
+- 📚 RecyclerView for chapter list  
+- 🔍 Index-based search functionality  
+- 🧩 Jetpack Compose used in `MainActivity`  
+- ☰ Navigation Drawer  
+- 📋 Grouped DrawerMenuItems  
+- ⚙️ DropdownMenuItem (e.g. Privacy Policy)
+
+---
+
+Feel free to fork, improve, or contribute.  
+If this project helps you, a ⭐️ would be appreciated!
