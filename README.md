@@ -1,3 +1,13 @@
+# WebViewTemplate
+
+![GitHub repo size](https://img.shields.io/github/repo-size/drmiaji/WebViewTemplate)
+![GitHub stars](https://img.shields.io/github/stars/drmiaji/WebViewTemplate?style=social)
+![GitHub forks](https://img.shields.io/github/forks/drmiaji/WebViewTemplate?style=social)
+![GitHub last commit](https://img.shields.io/github/last-commit/drmiaji/WebViewTemplate)
+![GitHub issues](https://img.shields.io/github/issues/drmiaji/WebViewTemplate)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/drmiaji/WebViewTemplate)
+![License](https://img.shields.io/github/license/drmiaji/WebViewTemplate)
+
 # 📱 Tajweed WebView Android App
 
 ![Language](https://img.shields.io/github/languages/top/drmiaji/Tajweed)
