@@ -105,9 +105,9 @@ This is a lightweight and easy-to-customize Android template using WebView. Idea
 
 ## 📸 Screenshots
 
-| Home Screen | Search | WebView | Dark Mode | Navigation | Settings |
-|-------------|--------|---------|
-| ![home](images/home.png) | ![search](images/search.png) | ![webview](images/webview.png) | ![webview](images/navigation.png) | ![webview](images/dark_mode.png) | ![webview](images/mode.png) |
+| Home Screen | WebView | Dark Mode | Navigation | Mode |
+|-------------|---------|-----------|------------|------|
+| ![Home](images/home.png) | ![WebView](images/webview.png) | ![Dark Mode](images/dark_mode.png) | ![Navigation](images/navigation.png) | ![Mode](images/mode.png) |
 
 ---
 
