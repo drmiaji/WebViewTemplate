@@ -1,45 +1,46 @@
-📱 WebView Template for Android
-This is a simple and flexible Android template built with WebView. Anyone can fork, customize, and extend it easily using Android Studio.
+## 📱 Android WebView টেমপ্লেট (বাংলা)
 
-✅ How to Use
-Fork or clone this repository in Android Studio
+এটি একটি সহজ, হালকা ও ব্যবহারযোগ্য Android টেমপ্লেট যেখানে WebView ব্যবহার করা হয়েছে। আপনি এটি ফর্ক করে আপনার নিজের কনটেন্ট যোগ করতে পারবেন খুব সহজেই।
 
-Modify the assets or code to suit your content
+---
 
-Add your own chapters, styles, or custom logic
+### ✅ ব্যবহারের নিয়ম
 
-📁 Assets Included
-assets/contents/topics/ → 10 sample chapters
+১. এই রেপোজিটোরিটি **Fork বা Clone** করুন Android Studio-তে  
+২. আপনার প্রয়োজন অনুযায়ী কোড বা অ্যাসেট পরিবর্তন করুন  
+৩. আপনার নিজের অধ্যায়, স্টাইল বা স্ক্রিপ্ট যুক্ত করুন  
 
-assets/contents/index.json → Chapter index
+---
 
-style.css, script.js, and base.html → For clean, styled content rendering
+### 📁 অন্তর্ভুক্ত অ্যাসেটসমূহ
 
-Fonts:
+- `assets/contents/topics/` → ১০টি নমুনা অধ্যায়  
+- `assets/contents/index.json` → অধ্যায়ের সূচিপত্র  
+- `style.css`, `script.js`, `base.html` → WebView-এর জন্য  
+- **ফন্ট**:  
+  - `SolaimanLipi.ttf` → বাংলা ফন্ট  
+  - `IndoPak` → কুরআনের জন্য আরবি ফন্ট  
 
-SolaimanLipi.ttf (Bangla font)
+---
 
-IndoPak (Arabic font suitable for Quran)
+### 🛠️ প্রযুক্তি ও ভার্সন
 
-🛠️ Built With
-Target SDK: 35
+- 🎯 **Target SDK**: ৩৫  
+- 📦 **ডিপেন্ডেন্সিগুলো** সর্বশেষ ভার্সনে আপডেটেড
 
-Dependencies: All libraries up to date
+---
 
-✨ Features
-🌐 WebView with HTML/CSS/JS content
+### ✨ ফিচারসমূহ
 
-📚 RecyclerView for listing chapters
+- 🌐 WebView দ্বারা HTML/CSS/JS কনটেন্ট প্রদর্শন  
+- 📚 RecyclerView দিয়ে অধ্যায়ের তালিকা  
+- 🔍 সূচিপত্রে সার্চ ফিচার  
+- 🧩 Jetpack Compose ব্যবহার করা হয়েছে শুধুমাত্র `MainActivity`-তে  
+- ☰ Navigation Drawer  
+- 📋 DrawerMenuGroups দ্বারা মেনু বিভাগ  
+- ⚙️ DropdownMenuItem (যেমনঃ Privacy Policy)
 
-🔍 Search functionality for chapter index
+---
 
-🧩 Jetpack Compose used in MainActivity
-
-📂 Navigation Drawer with grouped items
-
-📋 DrawerMenuGroups for organizing menu sections
-
-☰ Dropdown menus (e.g., Privacy Policy, etc.)
-
-Feel free to fork, improve, or contribute.
-If it helps you, a ⭐️ would be appreciated!
+🔧 আপনার সুবিধামতো কোড কাস্টোমাইজ করুন।  
+⭐️ ভালো লাগলে একটি স্টার দিতে ভুলবেন না!
