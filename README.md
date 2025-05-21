@@ -8,108 +8,93 @@
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/drmiaji/WebViewTemplate)
 ![License](https://img.shields.io/github/license/drmiaji/WebViewTemplate)
 
-# 📱 Tajweed WebView Android App
-
-![Language](https://img.shields.io/github/languages/top/drmiaji/Tajweed)
-![Stars](https://img.shields.io/github/stars/drmiaji/Tajweed?style=social)
-![Forks](https://img.shields.io/github/forks/drmiaji/Tajweed?style=social)
-![License](https://img.shields.io/github/license/drmiaji/Tajweed)
-![Last Commit](https://img.shields.io/github/last-commit/drmiaji/Tajweed)
-
 ---
 
-## 📱 Android WebView টেমপ্লেট (বাংলা)
+## 📱 তাজবীদ WebView Android অ্যাপ (বাংলা)
 
-এটি একটি সহজ, হালকা ও ব্যবহারযোগ্য Android টেমপ্লেট যেখানে WebView ব্যবহার করা হয়েছে। আপনি এটি ফর্ক করে আপনার নিজের কনটেন্ট যোগ করতে পারবেন খুব সহজেই।
+এটি একটি হালকা ও ব্যবহারযোগ্য Android WebView টেমপ্লেট। আপনি এটি ফর্ক করে খুব সহজেই আপনার কনটেন্ট যোগ করতে পারবেন।
 
 ---
 
 ### ✅ ব্যবহারের নিয়ম
 
-১. এই রেপোজিটোরিটি **Fork বা Clone** করুন Android Studio-তে  
-২. আপনার প্রয়োজন অনুযায়ী কোড বা অ্যাসেট পরিবর্তন করুন  
-৩. আপনার নিজের অধ্যায়, স্টাইল বা স্ক্রিপ্ট যুক্ত করুন  
+- এই রেপোজিটোরিটি **Fork/Clone** করুন Android Studio-তে  
+- আপনার প্রয়োজন অনুযায়ী কোড এবং অ্যাসেট পরিবর্তন করুন  
+- নিজের অধ্যায়, স্টাইল বা স্ক্রিপ্ট যুক্ত করুন  
 
 ---
 
-### 📁 অন্তর্ভুক্ত অ্যাসেটসমূহ
+### 📁 অন্তর্ভুক্ত ফাইলসমূহ
 
-- `assets/contents/topics/` → ১০টি নমুনা অধ্যায়  
-- `assets/contents/index.json` → অধ্যায়ের সূচিপত্র  
-- `style.css`, `script.js`, `base.html` → WebView-এর জন্য  
+- `assets/contents/topics/` → ১০টি নমুনা অধ্যায়  
+- `assets/contents/index.json` → অধ্যায়ের সূচিপত্র  
+- `style.css`, `script.js`, `base.html` → WebView রেন্ডারিংয়ের জন্য  
 - **ফন্ট**:  
-  - `SolaimanLipi.ttf` → বাংলা ফন্ট  
-  - `IndoPak` → কুরআনের জন্য আরবি ফন্ট  
+  - `SolaimanLipi.ttf` → বাংলা  
+  - `IndoPak.ttf` → আরবি (কুরআনিক)
 
 ---
 
-### 🛠️ প্রযুক্তি ও ভার্সন
+### 🛠️ প্রযুক্তি ও সংস্করণ
 
 - 🎯 **Target SDK**: ৩৫  
-- 📦 **ডিপেন্ডেন্সিগুলো** সর্বশেষ ভার্সনে আপডেটেড
+- 📦 **ডিপেন্ডেন্সি**: সর্বশেষ আপডেটেড
 
 ---
 
-### ✨ ফিচারসমূহ
+### ✨ ফিচারস
 
-- 🌐 WebView দ্বারা HTML/CSS/JS কনটেন্ট প্রদর্শন  
-- 📚 RecyclerView দিয়ে অধ্যায়ের তালিকা  
-- 🔍 সূচিপত্রে সার্চ ফিচার  
-- 🧩 Jetpack Compose ব্যবহার করা হয়েছে শুধুমাত্র `MainActivity`-তে  
+- 🌐 WebView দ্বারা HTML কনটেন্ট দেখানো  
+- 📚 RecyclerView দিয়ে অধ্যায় তালিকা  
+- 🔍 সূচিপত্র সার্চ ফিচার  
+- 🧩 `MainActivity`-তে Jetpack Compose  
 - ☰ Navigation Drawer  
-- 📋 DrawerMenuGroups দ্বারা মেনু বিভাগ  
+- 📋 Grouped Drawer Menu  
 - ⚙️ DropdownMenuItem (যেমনঃ Privacy Policy)
-
----
-
-🔧 আপনার সুবিধামতো কোড কাস্টোমাইজ করুন।  
-⭐️ ভালো লাগলে একটি স্টার দিতে ভুলবেন না!
-
----
 
 ---
 
 ## 🌐 Android WebView Template (English)
 
-This is a lightweight and easy-to-customize Android template using WebView. Ideal for anyone who wants to display HTML content inside an Android app.
+A lightweight, simple, and customizable WebView Android template. Perfect for apps that display local HTML/CSS/JS content.
 
 ---
 
 ### ✅ How to Use
 
-1. **Fork or clone** this repo into Android Studio  
-2. Modify the assets or code as per your need  
-3. Add your own chapters, styles, or JavaScript
+- **Fork/Clone** this repo into Android Studio  
+- Replace content in `assets/` as needed  
+- Add your chapters, scripts, and stylesheets  
 
 ---
 
-### 📁 Included Assets
+### 📁 Included Files
 
 - `assets/contents/topics/` → 10 sample chapters  
-- `assets/contents/index.json` → for indexed navigation  
-- `style.css`, `script.js`, `base.html` → for WebView rendering  
+- `assets/contents/index.json` → JSON index  
+- `style.css`, `script.js`, `base.html` → WebView rendering  
 - **Fonts**:  
-  - `SolaimanLipi.ttf` → Bengali font  
-  - `IndoPak` → Arabic font (Quranic script)
+  - `SolaimanLipi.ttf` → Bengali  
+  - `IndoPak.ttf` → Arabic/Quranic
 
 ---
 
 ### 🛠️ Tech Stack
 
-- 🎯 **Target SDK**: 35  
-- 📦 **Dependencies**: All are up to date
+- 🎯 Target SDK: 35  
+- 📦 Dependencies: All up-to-date
 
 ---
 
 ### ✨ Features
 
-- 🌐 WebView rendering for static HTML content  
-- 📚 RecyclerView for chapter list  
-- 🔍 Index-based search functionality  
-- 🧩 Jetpack Compose used in `MainActivity`  
+- 🌐 Local HTML WebView content  
+- 📚 RecyclerView for chapter navigation  
+- 🔍 Search function in index  
+- 🧩 Jetpack Compose used for `MainActivity`  
 - ☰ Navigation Drawer  
-- 📋 Grouped DrawerMenuItems  
-- ⚙️ DropdownMenuItem (e.g. Privacy Policy)
+- 📋 Grouped drawer items  
+- ⚙️ Dropdown menus (e.g. Privacy Policy)
 
 ---
 
@@ -123,10 +108,11 @@ This is a lightweight and easy-to-customize Android template using WebView. Idea
 
 ## 🙏 Contributions & Feedback
 
-Pull requests and suggestions are welcome. If this helps you, please ⭐️ the repo.
+Pull requests and suggestions are welcome.  
+If this helps you, please consider giving a ⭐️ to the repo.
 
 ---
 
 ## 📄 License
 
-This project is open-source and available under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
