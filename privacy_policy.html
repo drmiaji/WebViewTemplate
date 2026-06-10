@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Privacy Policy - Al Quran & Dua App</title>
+  <title>Privacy Policy - Al Quran &amp; Dua App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root {
@@ -43,7 +43,7 @@
       margin-top: 30px;
     }
 
-    p {
+    p, li {
       line-height: 1.6;
       margin: 12px 0;
     }
@@ -68,40 +68,72 @@
 <body>
   <div class="content">
     <h1>Al Quran &amp; Dua App - Read &amp; Explore Privacy Policy</h1>
-    <p><em>by bmiaji · Published January 21, 2025 · Updated January 13, 2026</em></p>
+    <p><em>by Dr. Abdul-Baten Miaji · Updated June 10, 2026</em></p>
 
     <h2>1. Overview</h2>
-    <p>Your privacy is important to us. This privacy policy explains how the <strong>Al Quran &amp; Dua App</strong> handles your information and ensures transparency in how your data is treated.</p>
+    <p>Your privacy is important to us. This privacy policy explains how the <strong>Al Quran &amp; Dua App</strong> handles user information, account sign-in, Firebase services, notifications, and local app data.</p>
 
     <h2>2. Permissions Requested</h2>
     <p>This app may request the following permissions:</p>
     <ul>
-      <li><strong>POST_NOTIFICATIONS</strong>: To inform you about new features or Quran-related content such as reminders or audio download status.</li>
-      <li><strong>FOREGROUND_SERVICE_MEDIA_PLAYBACK</strong>: To allow seamless playback of Quranic audio even when the app is minimized.</li>
-      <li><strong>FOREGROUND_SERVICE_DATA_SYNC</strong>: To support background synchronization of downloadable content.</li>
-      <li><strong>Storage Access</strong>: To save downloaded Quran audio for offline playback.</li>
+      <li><strong>POST_NOTIFICATIONS</strong>: To show reminders, app messages, and Quran-related notifications.</li>
+      <li><strong>FOREGROUND_SERVICE_MEDIA_PLAYBACK</strong>: To allow Quran audio playback while the app is minimized.</li>
+      <li><strong>FOREGROUND_SERVICE_DATA_SYNC</strong>: To support background synchronization and downloadable content.</li>
+      <li><strong>Location</strong>: To calculate prayer times and Qibla direction when those features are used.</li>
+      <li><strong>Storage or media access</strong>: To save downloaded Quran audio or other app content for offline use, where required by Android.</li>
     </ul>
 
-    <p><strong>Note:</strong> We do <strong>not</strong> request access to sensitive permissions like location, contacts, camera, or microphone.</p>
+    <h2>3. Account and Sign-In Data</h2>
+    <p>The app supports Google Sign-In with Firebase Authentication. When you sign in, Firebase Authentication may process your Google account identifier, name, email address, and profile information provided by Google.</p>
+    <p>Some synchronization features may also create an anonymous Firebase Authentication account if no Google account is signed in.</p>
 
-    <h2>3. Data Collection</h2>
-    <p>We do <strong>not</strong> collect, store, or transmit any personal information, usage data, or device identifiers.</p>
-    <p>The app functions fully offline, and any data downloaded (e.g., audio) remains only on your device and is not transmitted to us or any third party.</p>
+    <h2>4. Data Stored Locally</h2>
+    <p>The app may store the following data locally on your device:</p>
+    <ul>
+      <li>Bookmarks, read history, search history, and app settings.</li>
+      <li>Downloaded Quran audio, translations, tafsir, word-by-word files, Mushaf pages, and other offline content.</li>
+      <li>Notification or message history received through Firebase Cloud Messaging.</li>
+      <li>Firebase Cloud Messaging token state used for push notifications.</li>
+    </ul>
 
-    <h2>4. Third-Party Services</h2>
-    <p>This app does <strong>not</strong> use analytics tools, advertising SDKs, or other third-party libraries that collect or track user behavior.</p>
+    <h2>5. Data Stored in Firebase</h2>
+    <p>The app may store or process the following data through Firebase services:</p>
+    <ul>
+      <li><strong>Firebase Authentication</strong>: Google Sign-In or anonymous authentication identifiers.</li>
+      <li><strong>Cloud Firestore</strong>: Synced bookmarks, user notification records, and Firebase Cloud Messaging token information.</li>
+      <li><strong>Firebase Cloud Messaging</strong>: Device token used to deliver notifications.</li>
+      <li><strong>Device information</strong>: Device model and Android build fingerprint may be stored with FCM token records.</li>
+      <li><strong>Firebase Analytics</strong>: App usage diagnostics and events.</li>
+      <li><strong>Firebase Crashlytics</strong>: Crash reports and diagnostic information used to improve app stability.</li>
+    </ul>
 
-    <h2>5. Children’s Privacy</h2>
-    <p>This app is designed to be safe and accessible for all age groups, including children. Since we do not collect any data, there is no risk to child privacy.</p>
+    <h2>6. Third-Party Services</h2>
+    <p>The app uses Google Firebase services, including Firebase Authentication, Cloud Firestore, Firebase Cloud Messaging, Firebase Analytics, and Firebase Crashlytics. Data handled by these services is processed according to Google's and Firebase's applicable terms and policies.</p>
+    <p>The app does not sell user data.</p>
 
-    <h2>6. Changes to This Policy</h2>
+    <h2>7. Data Security</h2>
+    <p>Data transmitted to Google Firebase services is encrypted in transit using secure network connections. Local data remains on your device unless you use a feature that syncs data or communicates with Firebase or other app services.</p>
+
+    <h2>8. Account and Data Deletion</h2>
+    <p>You can delete your app account and associated app data from inside the app by opening <strong>Settings &gt; Account &amp; Data &gt; Delete account &amp; data</strong>.</p>
+    <p>You can also request account deletion using this public page: <a href="https://drmiaji.github.io/kanzulimaan/pages/delete-account.html">Delete Account &amp; Data</a>.</p>
+    <p>When deletion is requested, the app attempts to delete the Firebase Authentication account, synced bookmarks, user notification records, FCM token records, and local user-specific data such as bookmarks, read history, search history, and notification history.</p>
+
+    <h2>9. Data Retention</h2>
+    <p>Account-linked Firebase records are deleted when you request account deletion where technically possible. Some data may be retained when required for security, fraud prevention, legal compliance, or records managed by another provider, such as Google Play purchase records.</p>
+    <p>Aggregated Firebase Analytics data or Crashlytics diagnostics that are not directly linked to an app account may remain according to Firebase retention settings.</p>
+
+    <h2>10. Children’s Privacy</h2>
+    <p>The app is designed for a general audience. Account sign-in and Firebase-powered features should be used with appropriate consent where required by law.</p>
+
+    <h2>11. Changes to This Policy</h2>
     <p>We may update this Privacy Policy occasionally. Any changes will be posted within the app or on this page, with an updated effective date.</p>
 
-    <h2>7. Contact Us</h2>
+    <h2>12. Contact Us</h2>
     <p>If you have any questions, suggestions, or concerns regarding this policy, feel free to reach out:</p>
     <p>Email: <a href="mailto:bmiaji@gmail.com">bmiaji@gmail.com</a></p>
 
-    <p>&copy; 2025 Al Quran &amp; Dua App. All rights reserved.</p>
+    <p>&copy; 2026 Al Quran &amp; Dua App. All rights reserved.</p>
   </div>
 </body>
 </html>
